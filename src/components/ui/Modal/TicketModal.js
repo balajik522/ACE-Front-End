@@ -1,7 +1,15 @@
+/**
+ * TicketModal Component
+ * Modal form for creating/editing event tickets
+ */
+
 "use client";
 
 import styles from "./Modal.module.css";
 
+/**
+ * TicketModal Functional Component
+ */
 export default function TicketModal({
   open,
   onClose,
@@ -42,6 +50,7 @@ export default function TicketModal({
 
         {/* Form */}
         <div className={styles.grid2}>
+          {/* Ticket Name */}
           <div className={styles.field}>
             <label>Ticket Name <span>*</span></label>
             <input
@@ -53,6 +62,7 @@ export default function TicketModal({
             />
           </div>
 
+          {/* Description */}
           <div className={styles.field}>
             <label>Description </label>
             <input
@@ -64,6 +74,7 @@ export default function TicketModal({
             />
           </div>
 
+          {/* From Date */}
           <div className={styles.field}>
             <label>From Date<span>*</span></label>
             <input
@@ -81,6 +92,7 @@ export default function TicketModal({
             />
           </div>
 
+          {/* To Date */}
           <div className={styles.field}>
             <label>To Date <span>*</span></label>
             <input
@@ -98,6 +110,7 @@ export default function TicketModal({
             />
           </div>
 
+          {/* Amount (only for PAID tickets) */}
           {ticketType === "PAID" && (
             <div className={styles.field}>
               <label>Amount <span>*</span></label>
@@ -111,6 +124,7 @@ export default function TicketModal({
             </div>
           )}
 
+          {/* Total Tickets */}
           <div className={styles.field}>
             <label>Total Tickets </label>
             <select
@@ -140,3 +154,4 @@ export default function TicketModal({
     </div>
   );
 }
+

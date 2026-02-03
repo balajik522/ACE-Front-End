@@ -113,7 +113,6 @@ export default function OrganizationClient({ slug }) {
     const eventId = event.identity;
     const wasLiked = likedMap[eventId];
 
-    // optimistic UI
     setLikedMap((p) => ({ ...p, [eventId]: !wasLiked }));
     setLikeCountMap((p) => ({
       ...p,
@@ -162,6 +161,7 @@ export default function OrganizationClient({ slug }) {
 
   return (
     <div className="container-fuiled px-5 py-5 org-page">
+      {/* BACK NAVIGATION */}
       <button
         className="btn btn-light rounded-pill mb-3"
         onClick={() => router.back()}
@@ -169,7 +169,7 @@ export default function OrganizationClient({ slug }) {
         🔙 Back
       </button>
 
-      {/* ===== HERO ===== */}
+      {/* ================= HERO BANNER ================= */}
       <div className="org-hero position-relative rounded-4 overflow-hidden">
         <img
           src={bannerImages[currentBanner]}
@@ -177,6 +177,7 @@ export default function OrganizationClient({ slug }) {
           alt={org?.organizationName || "Organization"}
         />
 
+        {/* DOT INDICATORS */}
         <div className="org-hero-dots">
           {bannerImages.map((_, i) => (
             <span
@@ -188,10 +189,13 @@ export default function OrganizationClient({ slug }) {
         </div>
       </div>
 
-      {/* ===== ORG INFO ===== */}
+      {/* ================= ORGANIZATION INFO CARD ================= */}
       <div className="org-info-card shadow-sm rounded-4 p-4 mt-4 d-flex justify-content-between">
         <div>
+          {/* ORGANIZATION NAME */}
           <h5 className="fw-bold">{org?.organizationName}</h5>
+          
+          {/* META INFO */}
           <div className="org-meta">
             <span>
               {TICKET_COLOR_ICON} {events.length} Events
@@ -202,6 +206,7 @@ export default function OrganizationClient({ slug }) {
           </div>
         </div>
 
+        {/* SOCIAL LINKS */}
         <div className="d-flex gap-3 align-items-center">
           {INSTAGRAMICON}
           {LINKEDINICON}
@@ -211,7 +216,8 @@ export default function OrganizationClient({ slug }) {
           {XICON} {SHAREICON}
         </div>
       </div>
-      {/* ================= UPCOMING EVENTS ================= */}
+      
+      {/* ================= UPCOMING EVENTS SECTION ================= */}
       <section className="mt-5">
         <h5 className="fw-semibold">Upcoming Events</h5>
         <p className="text-muted mb-4" style={{ fontSize: "13px" }}>
@@ -219,21 +225,26 @@ export default function OrganizationClient({ slug }) {
           activities that match your interests and needs.
         </p>
 
+        {/* UPCOMING EVENTS GRID */}
         <div className="upcoming-grid">
           {upcomingEvents.map((e, index) => (
             <div key={e._id ?? `upcoming-${index}`} className="event-card-new">
+              {/* EVENT IMAGE */}
               <img
                 src={e.bannerImages?.[0] || "/images/event.jpg"}
                 alt={e.title}
                 className="event-card-img"
               />
 
+              {/* EVENT CONTENT */}
               <div className="event-card-body">
+                {/* TITLE + ACTIONS */}
                 <div className="d-flex justify-content-between align-items-center">
                   <h6 className="event-title">{e.title}</h6>
 
+                  {/* LIKE + SAVE BUTTONS */}
                   <div className="d-flex gap-3">
-                    {/* LIKE */}
+                    {/* LIKE BUTTON */}
                     <span
                       onClick={() => handleLike(e)}
                       style={{ cursor: "pointer" }}
@@ -244,7 +255,7 @@ export default function OrganizationClient({ slug }) {
                       </div>
                     </span>
 
-                    {/* SAVE */}
+                    {/* SAVE BUTTON */}
                     <span
                       onClick={() => handleSave(e)}
                       style={{ cursor: "pointer" }}
@@ -254,15 +265,18 @@ export default function OrganizationClient({ slug }) {
                   </div>
                 </div>
 
+                {/* LOCATION */}
                 <p className="event-meta">
                   {LOCATION_ICON} {e.location?.city || "Location"}
                 </p>
 
+                {/* DATE */}
                 <p className="event-meta">
                   {DATEICON}{" "}
                   {new Date(e.calendars?.[0]?.startDate).toDateString()}
                 </p>
 
+                {/* FOOTER - PRICE + TYPE */}
                 <div className="event-footer">
                   <span className="event-price">₹{e.price || 0}</span>
 
@@ -276,17 +290,20 @@ export default function OrganizationClient({ slug }) {
         </div>
       </section>
 
-      {/* ================= PAST EVENTS ================= */}
+      {/* ================= PAST EVENTS SECTION ================= */}
       <section className="mt-5">
+        {/* SECTION HEADER */}
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h5 className="fw-semibold">Past Events</h5>
 
+          {/* NAVIGATION ARROWS */}
           <div className="d-flex gap-2">
             <button className="btn btn-light rounded-circle">‹</button>
             <button className="btn btn-light rounded-circle">›</button>
           </div>
         </div>
 
+        {/* PAST EVENTS GRID */}
         <div className="past-grid">
           {upcomingEvents.map((e, index) => (
             <div key={e._id ?? `past-${index}`} className="past-card">
@@ -295,6 +312,7 @@ export default function OrganizationClient({ slug }) {
                 alt={e.title}
               />
 
+              {/* OVERLAY CONTENT */}
               <div className="past-overlay">
                 <h6>{e.title}</h6>
                 <span style={{ fontSize: "12px" }}>
@@ -306,6 +324,7 @@ export default function OrganizationClient({ slug }) {
         </div>
       </section>
 
+      {/* ================= FOOTER ================= */}
       <Footer />
     </div>
   );

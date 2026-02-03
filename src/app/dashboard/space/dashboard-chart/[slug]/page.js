@@ -15,6 +15,7 @@ export default function DashboardChartPage() {
 
   const [event, setEvent] = useState(null);
 
+  // Fetch event data based on the dynamic slug parameter
   useEffect(() => {
     if (!slug) return;
 

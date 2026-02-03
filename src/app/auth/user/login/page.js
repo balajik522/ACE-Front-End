@@ -40,12 +40,15 @@ import { loginApi, googleAuthLoginApi } from "../../../../lib/api/auth.api";
 import { useLoading } from "../../../../context/LoadingContext";
 import { setAuthSession } from "../../../../lib/auth";
 
+// User login page component
 export default function UserLoginPage() {
   const router = useRouter();
   const { setLoading } = useLoading();
 
+  // Password visibility state
   const [showPass, setShowPass] = useState(false);
 
+  // Form state management
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -56,6 +59,7 @@ export default function UserLoginPage() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate form inputs
     try {
       await userLoginSchema.validate(form, { abortEarly: false });
     } catch (err) {
@@ -65,6 +69,7 @@ export default function UserLoginPage() {
     setLoading(true);
 
     try {
+      // Authenticate user credentials
       const res = await loginApi(form);
 
       if (!res?.status || !res?.data) {
@@ -91,6 +96,7 @@ export default function UserLoginPage() {
     try {
       const googleToken = response.credential;
 
+      // Authenticate with Google
       const res = await googleAuthLoginApi({ googleToken });
 
       console.log("============res",res)
@@ -100,7 +106,8 @@ export default function UserLoginPage() {
         return;
       }
 
-     
+      
+      // Store session token
       setAuthSession(res.token);
 
       toast.success(MSG_GOOGLE_LOGIN_SUCCESS_USER);
@@ -112,6 +119,7 @@ export default function UserLoginPage() {
     }
   };
 
+  // Switch to organizer login
   const handleCreateEvent = () => {
     try {
       setLoading(true);

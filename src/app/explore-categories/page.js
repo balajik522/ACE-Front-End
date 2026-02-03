@@ -6,6 +6,10 @@ import { useRouter } from "next/navigation";
 import { getExploreEventTypes } from "../../lib/api/event.api";
 import { useLoading } from "../../context/LoadingContext";
 
+/* ExploreCategoriesPage Component
+ * Displays event type categories in a grid layout
+ * Clicking a category navigates to filtered events page
+ */
 export default function ExploreCategoriesPage() {
   const router = useRouter();
   const { setLoading } = useLoading();
@@ -47,6 +51,9 @@ export default function ExploreCategoriesPage() {
     }
   };
 
+  /* Navigate to Category
+   * Route to events page filtered by selected category
+   */
   const handleCardClick = (category) => {
     if (!category) return;
 
@@ -62,6 +69,7 @@ export default function ExploreCategoriesPage() {
   /* ================= UI ================= */
   return (
     <div className="explore-page">
+      {/* Back Navigation */}
       <div className="text-start m-4" style={{ cursor: "pointer" }}>
         <p onClick={handleBack}> 🔙 Back</p>
       </div>
@@ -86,9 +94,11 @@ export default function ExploreCategoriesPage() {
               style={{ "--card-color": item.color || "#F5F5F5" }}
               onClick={() => handleCardClick(item)}
             >
+              {/* Category Icon */}
               <div className="icon-box">
                 <img src={item.imageUrl || ""} alt={item.name} />
               </div>
+              {/* Category Name */}
               <p>{item.name}</p>
             </div>
           ))}

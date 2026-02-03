@@ -3,9 +3,15 @@
 import { useState } from "react";
 import styles from "./LocationHighlights.module.css";
 
+/**
+ * PopularLocations - Location discovery section with city/country tabs
+ * Displays popular event locations with event counts
+ */
 export default function PopularLocations() {
+  // Toggle between cities and countries view
   const [activeTab, setActiveTab] = useState("cities");
 
+  // Popular cities data
   const cities = [
     { img: "/images/coimbatore.png", name: "Coimbatore", events: "1725 Events" },
     { img: "/images/chennai.png", name: "Chennai", events: "1710 Events" },
@@ -15,6 +21,7 @@ export default function PopularLocations() {
     { img: "/images/salem.png", name: "Salem", events: "400 Events" },
   ];
 
+  // Popular countries data
   const countries = [
     { img: "/images/india.png", name: "India", events: "1725 Events" },
     { img: "/images/australia.png", name: "Australia", events: "1710 Events" },
@@ -24,6 +31,7 @@ export default function PopularLocations() {
     { img: "/images/singapore.png", name: "Singapore", events: "400 Events" },
   ];
 
+  // Select list based on active tab
   const list = activeTab === "cities" ? cities : countries;
 
   return (
@@ -56,7 +64,9 @@ export default function PopularLocations() {
       <div className={styles.grid}>
         {list.map((item, i) => (
           <div key={i} className={styles.card}>
+            {/* Location image */}
             <img src={item.img} className={styles.img} alt={item.name} />
+            {/* Location details */}
             <div className={styles.text}>
               <h3 className={styles.name}>{item.name}</h3>
               <p className={styles.events}>{item.events}</p>

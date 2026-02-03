@@ -23,6 +23,10 @@ import ShareModal from "../../ui/ShareModal/ShareModal";
 import { getAuthFromSession, isUserLoggedIn } from "../../../lib/auth";
 import { toast } from "react-hot-toast";
 
+/**
+ * EventDetailsView Component
+ * Displays comprehensive event information with interactive features
+ */
 export default function EventDetailsView({ event = {}, onBack }) {
   const { setLoading } = useLoading();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,12 +35,15 @@ export default function EventDetailsView({ event = {}, onBack }) {
   const viewCalledRef = useRef(false);
   const [openShare, setOpenShare] = useState(false);
 
+  // Countdown timer state
   const [countdown, setCountdown] = useState({
     days: "00",
     hours: "00",
     mins: "00",
     secs: "00",
   });
+  
+  // Banner images with fallback to default
   const images =
     event?.bannerImages?.length > 0
       ? event?.bannerImages
@@ -48,6 +55,7 @@ export default function EventDetailsView({ event = {}, onBack }) {
   const description = event?.description || "";
   const isLong = description.length > MAX_LENGTH;
 
+  // Truncated description with read more/less toggle
   const visibleText = expanded ? description : description.slice(0, MAX_LENGTH);
 
   const calendar = event?.calendars?.[0];
@@ -89,7 +97,6 @@ export default function EventDetailsView({ event = {}, onBack }) {
 
     const prevLiked = isLiked;
 
-    // optimistic UI
     setIsLiked(!prevLiked);
 
     const res = await likeEventApi({
@@ -103,31 +110,38 @@ export default function EventDetailsView({ event = {}, onBack }) {
     }
   };
 
+  // Slider navigation - Move to previous slide
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
+  // Slider navigation - Move to next slide
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  // Navigate to specific slide by index
   const goToSlide = (index) => {
     setCurrentIndex(index);
   };
 
+  // Open registration confirmation modal dialog
   const handleRegisterClick = () => {
     setOpenConfirm(true);
   };
 
+  // Confirm registration action and redirect to payment
   const handleConfirm = () => {
     setOpenConfirm(false);
     window.open(event.paymentLink, "_blank", "noopener,noreferrer");
   };
 
+  // Cancel registration modal dialog
   const handleCancel = () => {
     setOpenConfirm(false);
   };
 
+  // Initialize ticket form data when ticket is selected
   useEffect(() => {
     if (selectedTicket) {
       setTicketForm({
@@ -143,6 +157,7 @@ export default function EventDetailsView({ event = {}, onBack }) {
     }
   }, [selectedTicket]);
 
+  // Track event view count via API
   useEffect(() => {
     if (!event?.slug) return;
 
@@ -153,6 +168,7 @@ export default function EventDetailsView({ event = {}, onBack }) {
     addEventViewApi(event.slug);
   }, [event?.slug]);
 
+  // Reset loading state on mount
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -161,6 +177,7 @@ export default function EventDetailsView({ event = {}, onBack }) {
     <>
       <div className="container event-wrapper my-4">
         <div className="event-details-wrapper">
+          {/* BACK NAVIGATION BUTTON */}
           <button
             className="event-back-btn"
             onClick={() => {
@@ -170,30 +187,33 @@ export default function EventDetailsView({ event = {}, onBack }) {
           >
             🔙 Back
           </button>
-
-          {/* rest of your event details UI */}
         </div>
-        {/* ================= 1. HERO ================= */}
+
+        {/* ================= 1. HERO BANNER ================= */}
         <div className="hero-card edit-wrapper">
-          {/* ALWAYS BLURRED BACKGROUND */}
+          {/* BLURRED BACKGROUND IMAGE */}
           <div
             className="blur-bg"
             style={{ backgroundImage: `url(${images[currentIndex]})` }}
           />
 
-          {/* CLEAR CENTER IMAGE */}
+          {/* MAIN EVENT IMAGE */}
           <img
             className="event-img"
             alt="event"
             src={bannerImages[currentIndex]}
           />
+          
+          {/* STATUS BADGE */}
           <span className="badge-upcoming">
             {event?.status || "Upcoming Event"}
           </span>
-          {/* SLIDER CONTROLS – BELOW IMAGE */}
         </div>
+        
+        {/* ================= 2. IMAGE SLIDER CONTROLS ================= */}
         {images.length > 1 && (
           <div className="slider-controls">
+            {/* DOT INDICATORS */}
             <div className="slider-dots">
               {images.map((_, index) => (
                 <span
@@ -204,47 +224,56 @@ export default function EventDetailsView({ event = {}, onBack }) {
               ))}
             </div>
 
+            {/* NEXT ARROW BUTTON */}
             <span onClick={nextSlide} className="arrow-side">
               {RIGHTSIDEARROW_ICON}
             </span>
           </div>
         )}
 
-        {/* ================= 2. TITLE + REGISTER ================= */}
+        {/* ================= 3. TITLE + REGISTER BUTTON ================= */}
         <div className="title-row">
           <div>
+            {/* EVENT TITLE */}
             <h1 className="mt-3">
               {event?.title || "International Conference on ICRSEM II – 2025"}
             </h1>
 
-            {/* ================= 3. TAGS + VIEWS ================= */}
+            {/* ================= 4. TAGS + VIEW COUNT ================= */}
             <div className="meta-row">
               <div>
+                {/* CATEGORY TAG */}
                 <span className="tag yellow">
                   {event?.categoryName || "==========="}
                 </span>
 
+                {/* PRICE TAG */}
                 <span className="tag purple">Paid</span>
+                {/* MODE TAG */}
                 <span className="tag green">{event?.mode || "===="}</span>
-                {/* BACKEND: event.tags */}
 
+                {/* VIEW COUNT */}
                 <span className="views">
                   {VIEW_ICON} {event?.viewCount}
                 </span>
-                {/* BACKEND: event.views */}
               </div>
             </div>
           </div>
+          
+          {/* REGISTER BUTTON + SOCIAL ACTIONS */}
           <div>
             <button className="btn-register" onClick={handleRegisterClick}>
               Register Now
             </button>
+            
+            {/* SOCIAL ACTIONS - LIKE, SHARE */}
             <div className="soc-mediya">
-              {/* like , share , save */}
+              {/* LIKE BUTTON */}
               <span style={{ cursor: "pointer" }} onClick={handleLike}>
                 <HEART_ICON active={isLiked} />
               </span>
 
+              {/* SHARE BUTTON */}
               <span className="share-icon" onClick={() => setOpenShare(true)}>
                 {SINGELEVENTSHARE_ICON}
               </span>
@@ -468,7 +497,7 @@ export default function EventDetailsView({ event = {}, onBack }) {
                   </>
                 )}
 
-                {/* BACKEND: offers */}
+                {/* Discounts and offers from data source */}
 
                 <h3 className="mt-3">Tags</h3>
 
@@ -488,7 +517,7 @@ export default function EventDetailsView({ event = {}, onBack }) {
                   <span>{INSTAGRAMICON}</span>
                   <span>{YOUTUBEICON}</span>
                   <span>{XICON}</span>
-                  {/* BACKEND: tags */}
+                {/* Social media tags from data source */}
                 </div>
               </div>
             </div>
@@ -579,3 +608,4 @@ export default function EventDetailsView({ event = {}, onBack }) {
     </>
   );
 }
+

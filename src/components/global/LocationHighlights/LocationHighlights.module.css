@@ -2,12 +2,15 @@
    ROOT
 ========================= */
 
-/* =========================
-   TABS
-========================= */
 .popularlocationroot {
   padding: 40px 50px;
 }
+
+/* =========================
+   TABS
+========================= */
+
+/* Tab buttons container */
 .tabs {
   display: flex;
   justify-content: center;
@@ -15,6 +18,7 @@
   margin-bottom: 14px;
 }
 
+/* Individual tab button */
 .tab {
   padding: 10px 26px;
   border-radius: 999px;
@@ -27,6 +31,7 @@
   transition: all 0.25s ease;
 }
 
+/* Active tab state */
 .active {
   background: #7f00ff;
   color: #ffffff;
@@ -88,6 +93,7 @@
   text-align: left;
 }
 
+/* Location name */
 .name {
   font-size: 16px;
   font-weight: 600;
@@ -95,6 +101,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Event count */
 .events {
   margin-top: 4px;
   font-size: 12px;

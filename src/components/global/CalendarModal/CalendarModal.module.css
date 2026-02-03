@@ -1,3 +1,4 @@
+/* ===== MODAL BACKDROP ===== */
 .backdrop {
   position: fixed;
   inset: 0;
@@ -8,6 +9,7 @@
   z-index: 100;
 }
 
+/* ===== MODAL CONTAINER ===== */
 .modal {
   background: #fff;
   width: 95%;
@@ -27,6 +29,7 @@
   color: red;
 }
 
+/* ===== FORM ELEMENTS ===== */
 .label {
   display: block;
   margin: 20px 0 8px;
@@ -51,6 +54,7 @@
   padding: 0 14px;
 }
 
+/* ===== DATE ROWS CONTAINER ===== */
 .rowsContainer {
   max-height: 300px;
   overflow-y: auto;
@@ -65,12 +69,14 @@
   margin-top: 20px;
 }
 
+/* ===== DELETE ICON ===== */
 .deleteIcon {
   display: flex;
   align-items: flex-end;
   cursor: pointer;
 }
 
+/* ===== ADD ROW BUTTON ===== */
 .addRow {
   text-align: right;
   color: #7b2cff;
@@ -78,6 +84,7 @@
   cursor: pointer;
 }
 
+/* ===== MULTI DATE TOGGLE ===== */
 .toggleRow {
   display: flex;
   align-items: center;
@@ -124,6 +131,7 @@
   transform: translateX(20px);
 }
 
+/* ===== ACTION BUTTONS ===== */
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -139,6 +147,7 @@
   cursor: pointer;
 }
 
+/* ===== CLOSE BUTTON ===== */
 .close {
   position: absolute;
   top: 14px;
@@ -148,3 +157,4 @@
   font-size: 18px;
   cursor: pointer;
 }
+

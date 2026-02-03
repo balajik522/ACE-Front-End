@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// ============================================
+// AUTH SLICE
+// Manages user/organizer authentication state
+// ============================================
+
 const initialState = {
   user: null,
   organizer: null,

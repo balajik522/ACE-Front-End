@@ -1,6 +1,11 @@
 "use client";
 import "./EventDetailsModal.css";
 
+/**
+ * EventDetailsModal Component
+ * Navigation modal for editing event details sections
+ * Provides access to Organization, Offer, and Social Media settings
+ */
 export default function EventDetailsModal({
   onClose,
   onOrgClick,
@@ -45,3 +50,4 @@ export default function EventDetailsModal({
     </div>
   );
 }
+

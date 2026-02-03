@@ -23,13 +23,14 @@ export default function MyEventPage() {
   const [view, setView] = useState("grid");
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true); // ✅ FIX
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
 
   const [auth, setAuth] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  // Check authentication status on mount
   useEffect(() => {
     const ok = isUserLoggedIn();
     setLoggedIn(ok);
@@ -37,6 +38,7 @@ export default function MyEventPage() {
   }, []);
 
   useEffect(() => {
+    // Load all events and statuses from the API
     async function loadAll() {
       try {
         setLoading(true);
@@ -72,6 +74,7 @@ export default function MyEventPage() {
     if (loggedIn && auth) loadAll();
   }, [loggedIn, auth]);
 
+  // Filter events based on search text and status
   const filteredEvents = events.filter((e) => {
     if (filter !== "all" && e.status !== filter) return false;
     if (search && !e.title?.toLowerCase().includes(search.toLowerCase()))

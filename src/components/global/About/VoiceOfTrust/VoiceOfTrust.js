@@ -1,6 +1,9 @@
 "use client";
+
+// Component styles for VoiceOfTrust section
 import styles from "./VoiceOfTrust.module.css";
 
+// Sample testimonial data for trust indicators
 const DATA = [
   { emoji: "🥰", name: "Jerome Bell", role: "Organizer" },
   { emoji: "😊", name: "Jerome Bell", role: "User" },
@@ -10,6 +13,11 @@ const DATA = [
   { emoji: "😊", name: "Jerome Bell", role: "User" },
 ];
 
+/**
+ * VoiceOfTrust Component
+ * Displays testimonials in an infinite marquee animation
+ * Shows user/organizer reviews in scrolling rows
+ */
 export default function VoiceOfTrust() {
   return (
     <section className={styles.wrapper}>
@@ -38,6 +46,10 @@ export default function VoiceOfTrust() {
   );
 }
 
+/**
+ * Card Component
+ * Individual testimonial card with user info and review
+ */
 function Card({ item }) {
   return (
     <div className={styles.card}>
@@ -52,3 +64,4 @@ function Card({ item }) {
     </div>
   );
 }
+

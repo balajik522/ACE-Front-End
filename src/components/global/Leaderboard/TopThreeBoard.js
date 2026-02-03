@@ -2,17 +2,24 @@
 
 import styles from "./TopThreeBoard.module.css";
 
+/**
+ * TopThreeBoard - Displays top 3 ranked event organizers
+ * Shows gold, silver, and bronze winner cards with organizer details
+ */
 export default function TopThreeBoard({ data = [] }) {
   if (!Array.isArray(data) || data.length === 0) return null;
 
+  // Sort by rank and extract top 3 organizers
   const sorted = [...data].sort((a, b) => a.rank - b.rank);
 
   const first = sorted.find((o) => o.rank === 1);
   const second = sorted.find((o) => o.rank === 2);
   const third = sorted.find((o) => o.rank === 3);
 
+  // Get event count helper
   const getEventsCount = (org) => org?.eventCount ?? org?._count?.events ?? 0;
 
+  // Avatar component - handles image or fallback letter
   const Avatar = ({ org }) => {
     if (org?.profileImage) {
       return (

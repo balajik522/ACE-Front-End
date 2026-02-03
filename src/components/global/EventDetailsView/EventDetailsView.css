@@ -1,6 +1,9 @@
+/* ===== EVENT WRAPPER - Main container ===== */
 .event-wrapper {
   font-family: Inter, sans-serif;
 }
+
+/* ===== HERO SECTION - Banner image area ===== */
 .hero-card {
   position: relative;
   width: 100%;
@@ -9,6 +12,7 @@
   overflow: hidden;
 }
 
+/* Blurred background layer */
 .blur-bg {
   position: absolute;
   inset: 0;
@@ -30,6 +34,7 @@
     rgba(0, 0, 0, 0.45)
   );
 }
+
 /* MAIN IMAGE – CENTER CLEAR */
 .event-img {
   position: relative;
@@ -39,6 +44,8 @@
   object-fit: cover;
   border-radius: 39px;
 }
+
+/* ===== BANNER MODAL - Fullscreen image preview ===== */
 .banner-modal-overlay {
   position: fixed;
   inset: 0;
@@ -59,9 +66,13 @@
 .share-icon{
   cursor: pointer;
 }
+
+/* ===== EDIT WRAPPER - Container for editable sections ===== */
 .edit-wrapper {
   position: relative;
 }
+
+/* ===== SOCIAL MEDIA ACTIONS ===== */
 .soc-mediya {
   padding-top: 20px;
   padding-top: 20px;
@@ -70,6 +81,8 @@
   gap: 20px;
   justify-content: center;
 }
+
+/* ===== EDIT OVERLAY - Hover to edit ===== */
 .edit-overlay {
   position: absolute;
   inset: 0;
@@ -121,6 +134,7 @@
   padding: 20px;
   width: 400px;
 }
+
 .child-overlay {
   position: fixed;
   inset: 0;
@@ -182,7 +196,7 @@
 }
 
 .slider-dots span.active {
-  background: #7f00ff; /* image la iruka purple */
+  background: #7f00ff; 
 }
 
 .slider-controls {
@@ -192,6 +206,7 @@
   gap: 16px;
   margin-top: 14px;
 }
+
 .arrow-side {
   cursor: pointer;
 }
@@ -204,11 +219,13 @@
   margin-top: 20px;
   gap: 20px;
 }
+
 .title-row h1 {
   font-weight: 700;
   text-transform: capitalize;
   font-family: "BL Melody", sans-serif;
 }
+
 .meta-row {
   display: flex;
   gap: 8px;
@@ -217,10 +234,13 @@
   padding-top: 20px;
   font-family: var(--font-poppins), sans-serif;
 }
+
 .meta-row div {
   display: flex;
   gap: 20px;
 }
+
+/* ===== DESCRIPTION SECTION ===== */
 .description {
   font-size: 14px;
   line-height: 1.6;
@@ -230,7 +250,7 @@
 }
 
 .readmore {
-  color: #7b2cff; /* pink */
+  color: #7b2cff; 
   cursor: pointer;
   font-weight: 600;
   margin-left: 4px;
@@ -247,13 +267,16 @@
   border-radius: 14px;
   font-size: 12px;
 }
+
 .yellow {
   background: #fff3cd;
 }
+
 .purple {
   background: #f2eaff;
   color: #7a12ff;
 }
+
 .green {
   background: #e6fffa;
 }
@@ -268,6 +291,7 @@
   width: 357px;
   font-family: "BL Melody", sans-serif;
 }
+
 .btn-outline {
   border: 1px solid #7a12ff;
   color: #7a12ff;
@@ -284,12 +308,14 @@
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
+
 .card-box h3 {
   font-size: 21px;
   font-weight: 800;
   padding-bottom: 20px;
   font-family: "BL Melody", sans-serif;
 }
+
 .card-box h4 {
   color: #7713ec;
   text-transform: uppercase;
@@ -297,18 +323,22 @@
   font-weight: 700;
   font-family: "BL Melody", sans-serif;
 }
+
 .discount-section {
   display: flex;
   align-items: center;
   gap: 15px;
 }
+
 .discount-section img {
   width: 50px;
 }
+
 .card-box p {
   padding-bottom: 20px;
   font-family: var(--font-poppins), sans-serif;
 }
+
 .map-btn {
   border-radius: 50px;
   background: #f7f7f7;
@@ -332,8 +362,9 @@
   box-shadow: inset 0 8px 24px rgba(0, 0, 0, 0.06);
   height: 100%;
 }
+
 .ticket-title {
-  max-width: 180px; /* adjust based on card width */
+  max-width: 180px; 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -367,6 +398,7 @@
   font-weight: 600;
   font-family: "BL Melody", sans-serif;
 }
+
 .ticket-top span {
   font-family: var(--font-poppins), sans-serif;
 }
@@ -405,6 +437,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* ===== HOST GRID ===== */
 .host-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -413,6 +446,7 @@
   padding: 15px;
   box-shadow: inset 0 8px 24px rgba(0, 0, 0, 0.06);
 }
+
 .host-grid label {
   color: #1e1d1d;
   font-size: 15px;
@@ -430,9 +464,12 @@
   background: var(--Color, #f3f3f3);
   font-family: var(--font-poppins), sans-serif;
 }
+
 .other-strong-titel strong {
   font-family: "BL Melody", sans-serif;
 }
+
+/* ===== COUNTDOWN TIMER ===== */
 .countdown {
   display: flex;
   gap: 14px;
@@ -492,6 +529,7 @@
   gap: 20px;
   margin: 40px 0;
 }
+
 .event-back-btn {
   background: none;
   border: none;
@@ -518,3 +556,4 @@
     grid-template-columns: 1fr;
   }
 }
+

@@ -1,7 +1,13 @@
+/* ============================================
+   Edit Overlay Styles
+   ============================================ */
+
+/* Wrapper - Relative positioning context */
 .edit-wrapper {
   position: relative;
 }
 
+/* Overlay - Hidden by default, shows on hover */
 .edit-overlay {
   position: absolute;
   inset: 0;
@@ -23,9 +29,12 @@
   border-radius: inherit;
 }
 
+/* Hover State - Reveals overlay on parent hover */
 .edit-wrapper:hover .edit-overlay {
   opacity: 1;
 }
+
+/* Edit Section - Purple pill-shaped button */
 .edit-section{
   background: #7a12ff;
   padding: 10px 27px;
@@ -37,3 +46,4 @@
   border-radius: 20px;
   cursor: pointer;
 }
+

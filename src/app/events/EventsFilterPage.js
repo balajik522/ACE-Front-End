@@ -21,6 +21,7 @@ import ActiveFilterChips from "./components/ActiveFilterChips";
 import { useLoading } from "../../context/LoadingContext";
 import { useSearchParams } from "next/navigation";
 
+/* Pagination Settings */
 const PAGE_SIZE = 10;
 
 /* ================= PAYLOAD BUILDER ================= */
@@ -41,38 +42,47 @@ const buildFilterPayload = (filters, page, sort) => {
     }
   }
 
+  // Event mode filter (online/offline/hybrid)
   if (filters.modes.length) {
     payload.modes = filters.modes;
   }
 
+  // Search text filter
   if (filters.searchText.trim()) {
     payload.searchText = filters.searchText.trim();
   }
 
+  // Eligible department filter
   if (filters.eligibleDeptIdentities.length) {
     payload.eligibleDeptIdentities = filters.eligibleDeptIdentities;
   }
 
+  // Certificate type filter
   if (filters.certIdentity) {
     payload.certIdentity = filters.certIdentity;
   }
 
+  // Event type filter
   if (filters.eventTypeIdentity) {
     payload.eventTypeIdentity = filters.eventTypeIdentity;
   }
 
+  // Perks filter
   if (filters.perkIdentities.length) {
     payload.perkIdentities = filters.perkIdentities;
   }
 
+  // Accommodation filter
   if (filters.accommodationIdentities.length) {
     payload.accommodationIdentities = filters.accommodationIdentities;
   }
 
+  // Date range filter
   if (filters.dateRange?.startDate && filters.dateRange?.endDate) {
     payload.dateRange = filters.dateRange;
   }
 
+  // Price range filter (only if not default)
   if (filters.priceRange.min !== 0 || filters.priceRange.max !== 10000) {
     payload.priceRange = filters.priceRange;
   }
@@ -80,13 +90,22 @@ const buildFilterPayload = (filters, page, sort) => {
   return payload;
 };
 
+/* EventsFilterPage Component
+ * Main page for filtering and browsing events
+ * Includes sidebar filters, event list, and pagination
+ */
 export default function EventsFilterPage() {
   /* ================= MASTER DATA ================= */
   const { setLoading } = useLoading();
   const searchParams = useSearchParams();
+  
+  // Get initial filter from URL query params
   const eventTypeFromUrl =
     searchParams.get("eventType") || searchParams.get("category");
 
+  /* Master Data State
+   * Dropdown options loaded from API
+   */
   const [categories, setCategories] = useState([]);
   const [eventTypes, setEventTypes] = useState([]);
   const [perks, setPerks] = useState([]);
@@ -119,6 +138,9 @@ export default function EventsFilterPage() {
   const [page, setPage] = useState(1);
   // landing page event type filtered
 
+  /* Initialize filters from URL
+   * Apply event type from query params on mount
+   */
   useEffect(() => {
     if (eventTypeFromUrl) {
       setFilters((prev) => ({
@@ -251,6 +273,7 @@ export default function EventsFilterPage() {
 
         {/* RIGHT CONTENT */}
         <div className="col-xl-9 col-lg-8 right-side-filter">
+          {/* Search and Sort Controls */}
           <SortBar
             value={sort}
             onChange={setSort}
@@ -262,6 +285,7 @@ export default function EventsFilterPage() {
             }
           />
 
+          {/* Active Filter Chips */}
           <ActiveFilterChips
             filters={filters}
             onRemove={handleRemoveFilter}
@@ -271,6 +295,7 @@ export default function EventsFilterPage() {
             certifications={certifications}
           />
 
+          {/* Events List */}
           <EventsListFilter events={events} />
 
           {/* PAGINATION */}

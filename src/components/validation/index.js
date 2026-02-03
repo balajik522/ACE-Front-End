@@ -6,14 +6,23 @@ import * as Yup from "yup";
 
 export const required = (name) => Yup.string().required(`${name} is required`);
 
+/**
+ * Validates email format
+ */
 export const email = Yup.string()
   .email("Invalid email format")
   .required("Email is required");
 
+/**
+ * Validates minimum 8 character password
+ */
 export const password8 = Yup.string()
   .min(8, "Password must be at least 8 characters")
   .required("Password is required");
 
+/**
+ * Creates password confirmation validator
+ */
 export const confirmPassword = (ref) =>
   Yup.string()
     .required("Confirm password is required")
@@ -76,6 +85,7 @@ export const eventSchema = Yup.object({
   eventTime: required("Event Time"),
   mode: required("Mode"),
 
+  // Venue required only for offline/hybrid events
   venue: Yup.string().when("mode", (mode, schema) => {
     if (mode === "offline" || mode === "hybrid") {
       return schema.required("Venue is required");
@@ -146,7 +156,6 @@ export const createEventStep2Schema = Yup.object({
 });
 
 // STEP 3 – Media & Tickets
-// STEP 3
 export const ticketSchema = Yup.object({
   ticketType: Yup.string()
     .oneOf(["FREE", "PAID"])
@@ -156,6 +165,7 @@ export const ticketSchema = Yup.object({
 
   from: Yup.string().required("From date is required"),
 
+  // Custom validation: To date must be after From date
   to: Yup.string()
     .required("To date is required")
     .test("is-after", "To date must be after From date", function (value) {
@@ -170,11 +180,9 @@ export const ticketSchema = Yup.object({
     .required("Total tickets is required"),
 });
 
+// Step 3 form validation (certification & payment)
 export const createEventStep3Schema = Yup.object({
   certification: Yup.string().required("Certification is required"),
   paymentLink: Yup.string().required("Payment link is required"),
 });
 
-/* ===========================
-   TICKET MODEL (COMMON)
-=========================== */

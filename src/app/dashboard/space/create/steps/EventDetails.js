@@ -14,6 +14,10 @@ import {
   getCities,
 } from "../../../../../lib/location.api";
 
+/* EventDetails Component
+ * Collects core event information: title, category, type, tags, description
+ * Handles calendar scheduling and event mode (online/offline/hybrid)
+ */
 export default function EventDetails({
   data,
   setData,
@@ -24,6 +28,8 @@ export default function EventDetails({
   // const [mode, setMode] = useState("online");
   const [showCalendar, setShowCalendar] = useState(false);
   const [tagInput, setTagInput] = useState("");
+  
+  // Dropdown data - stores categories and event types from API
   const [categories, setCategories] = useState([]);
   const [eventTypes, setEventTypes] = useState([]);
 
@@ -103,6 +109,7 @@ export default function EventDetails({
     loadCities();
   }, [data.state, data.country]);
 
+  /* Add new tag to event tags array */
   const addTag = () => {
     let value = tagInput.trim();
     if (!value) return;
@@ -120,6 +127,7 @@ export default function EventDetails({
     setTagInput("");
   };
 
+  /* Remove tag from event tags array */
   const removeTag = (tag) => {
     setData({
       ...data,
@@ -161,6 +169,7 @@ export default function EventDetails({
         <h3 className={styles.cardTitle}>Primary Details</h3>
 
         <div className={styles.grid3}>
+          {/* Event title input */}
           <div className={styles.field}>
             <label>
               Event Title <span>*</span>
@@ -173,6 +182,7 @@ export default function EventDetails({
             />
           </div>
 
+          {/* Category dropdown */}
           <div className={styles.field}>
             <label>
               Category <span>*</span>
@@ -219,6 +229,7 @@ export default function EventDetails({
         </div>
 
         <div className={styles.grid3}>
+          {/* Tags input with add/remove functionality */}
           <div className={styles.field}>
             <label>
               Tags <span>*</span>
@@ -257,6 +268,7 @@ export default function EventDetails({
             </div>
           </div>
 
+          {/* Offers input */}
           <div className={styles.field}>
             <label>Offers</label>
             <input
@@ -268,6 +280,7 @@ export default function EventDetails({
           </div>
         </div>
 
+        {/* Event description textarea */}
         <div className={styles.field}>
           <label>
             About Event <span>*</span>
@@ -307,10 +320,11 @@ export default function EventDetails({
         )}
       </div>
 
-      {/* EVENT MODE – SAME UI AS OLD */}
+      {/* EVENT MODE */}
       <div className={styles.card}>
         <h3 className={styles.cardTitle}>Event Mode</h3>
 
+        {/* Mode toggle buttons */}
         <div className={styles.modeSwitch}>
           {["online", "offline", "hybrid"].map((m) => (
             <button
@@ -330,6 +344,7 @@ export default function EventDetails({
           ))}
         </div>
 
+        {/* Online meet link - shown for online/hybrid modes */}
         {(data.mode === "online" || data.mode === "hybrid") && (
           <div className={styles.field}>
             <label>
@@ -344,9 +359,11 @@ export default function EventDetails({
           </div>
         )}
 
+        {/* Location fields - shown for offline/hybrid modes */}
         {(data.mode === "offline" || data.mode === "hybrid") && (
           <>
             <div className={styles.grid3}>
+              {/* Country dropdown */}
               <div className={styles.field}>
                 <label>Country *</label>
                 <select
@@ -370,6 +387,7 @@ export default function EventDetails({
                 </select>
               </div>
 
+              {/* State dropdown */}
               <div className={styles.field}>
                 <label>State *</label>
                 <select
@@ -388,6 +406,7 @@ export default function EventDetails({
                 </select>
               </div>
 
+              {/* City dropdown */}
               <div className={styles.field}>
                 <label>City *</label>
                 <select
@@ -405,6 +424,7 @@ export default function EventDetails({
               </div>
             </div>
             <div className={styles.grid2}>
+              {/* Google Maps link */}
               <div className={styles.field}>
                 <label>
                   Google Map Link <span>*</span>
@@ -418,6 +438,7 @@ export default function EventDetails({
                   }
                 />
               </div>
+              {/* Venue address */}
               <div className={styles.field}>
                 <label>
                   Venue <span>*</span>
@@ -444,6 +465,7 @@ export default function EventDetails({
         </button>
       </div>
 
+      {/* Calendar modal popup */}
       {showCalendar && (
         <CalendarModal
           onClose={() => setShowCalendar(false)}

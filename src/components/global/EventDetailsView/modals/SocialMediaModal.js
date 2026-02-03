@@ -2,13 +2,19 @@
 import { useState } from "react";
 import "./SocialMediaModal.css";
 
+/**
+ * SocialMediaModal Component
+ * Modal for editing social media links
+ */
 export default function SocialMediaModal({ value = {}, onClose, onSave }) {
+  // Local state for form fields
   const [form, setForm] = useState({
     whatsapp: value.whatsapp || "",
     instagram: value.instagram || "",
     linkedin: value.linkedin || "",
   });
 
+  // Prepare and send payload on save
   const handleSave = () => {
     const payload = {
       socialLinks: {
@@ -71,3 +77,4 @@ export default function SocialMediaModal({ value = {}, onClose, onSave }) {
     </div>
   );
 }
+

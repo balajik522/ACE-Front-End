@@ -1,3 +1,12 @@
+/**
+ * WhyChoose Component Styles
+ * Feature highlights section with card grid layout
+ */
+
+/* ========================================
+   ROOT SECTION
+   Main container with vertical padding
+   ======================================== */
 .why-ace {
   padding: 90px 15px;
 }
@@ -16,7 +25,10 @@
   font-family: "BL Melody", sans-serif;
 }
 
-/* GRID – IMPORTANT */
+/* ========================================
+   GRID LAYOUT
+   Main grid structure for feature cards
+   ======================================== */
 .why-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -99,9 +111,11 @@
   }
 }
 
+/* Mobile devices (≤576px) */
 @media (max-width: 576px) {
   .horizontal {
     flex-direction: column;
     text-align: center;
   }
 }
+

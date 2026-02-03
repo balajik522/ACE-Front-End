@@ -20,6 +20,9 @@ import {
   isUserLoggedIn,
 } from "../../../lib/auth";
 
+/* EventsListFilter Component
+ * Displays event cards with like/save functionality
+ */
 export default function EventsListFilter({ events = [] }) {
   const router = useRouter();
   const { setLoading } = useLoading();
@@ -69,7 +72,6 @@ export default function EventsListFilter({ events = [] }) {
     const eventId = e.identity;
     const wasLiked = likedCards[eventId];
 
-    // optimistic UI
     setLikedCards((prev) => ({
       ...prev,
       [eventId]: !wasLiked,
@@ -113,7 +115,6 @@ export default function EventsListFilter({ events = [] }) {
     const eventId = e.identity;
     const wasSaved = savedCards[eventId];
 
-    // optimistic UI
     setSavedCards((prev) => ({
       ...prev,
       [eventId]: !wasSaved,
@@ -152,15 +153,16 @@ export default function EventsListFilter({ events = [] }) {
     );
   }
 
-  /* ================= UI (UNCHANGED) ================= */
+  /* ================= UI RENDER ================= */
   return (
     <div className="events-list">
+      {/* EVENT CARDS LIST */}
       {events.map((e) => {
         const startDate = e.calendars?.[0]?.startDate || e.createdAt;
 
         return (
           <div key={e.identity} className="event-row-card floating-card">
-            {/* IMAGE */}
+            {/* EVENT IMAGE */}
             <div
               className="floating-image"
               onClick={() => handleClick(e.slug)}
@@ -171,13 +173,15 @@ export default function EventsListFilter({ events = [] }) {
               />
             </div>
 
-            {/* CONTENT */}
+            {/* EVENT CONTENT */}
             <div className="event-content">
+              {/* TITLE ROW - LIKE/SAVE ACTIONS */}
               <div className="event-title-row">
                 <h6 className="event-title">{e.title}</h6>
 
+                {/* LIKE + SAVE SECTION */}
                 <div className="d-flex gap-3 like-save-section">
-                  {/* LIKE */}
+                  {/* LIKE BUTTON */}
                   <span
                     onClick={() => handleLike(e)}
                     style={{ cursor: "pointer" }}
@@ -188,7 +192,7 @@ export default function EventsListFilter({ events = [] }) {
                     </div>
                   </span>
 
-                  {/* SAVE */}
+                  {/* SAVE BUTTON */}
                   <span
                     onClick={() => handleSave(e)}
                     style={{ cursor: "pointer" }}
@@ -198,10 +202,12 @@ export default function EventsListFilter({ events = [] }) {
                 </div>
               </div>
 
+              {/* Event Category Tag */}
               <span className="tag networking">
                 {e.categoryName || "Networking"}
               </span>
 
+              {/* Event Date */}
               <div className="event-meta-sub">
                 <span>
                   {DATEICON}{" "}
@@ -213,11 +219,13 @@ export default function EventsListFilter({ events = [] }) {
                 </span>
               </div>
 
+              {/* Event Location and Mode */}
               <div className="event-meta">
                 <span>
                   {LOCATION_ICON} {e.location?.city || "N/A"}
                 </span>
 
+                {/* MODE BADGE */}
                 <span className={`mode-text ${e.mode?.toLowerCase()}`}>
                   <span className="mode-dot" />
                   {e.mode || "Offline"}

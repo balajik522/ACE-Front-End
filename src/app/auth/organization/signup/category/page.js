@@ -31,6 +31,7 @@ import {
 
 import { useLoading } from "../../../../../context/LoadingContext"; 
 
+// Organization category options
 const CATEGORIES = [
   { id: "college", title: "College / University", icon: UNIVERSITYICONS },
   { id: "training", title: "Training Institute", icon: TRAININGICON },
@@ -43,11 +44,13 @@ const CATEGORIES = [
   { id: "ngo", title: "NGO / Non-Profit", icon: NGOICON },
 ];
 
+// Category selection page component
 export default function Page() {
   const router = useRouter();
   const { setLoading } = useLoading(); 
   const [selected, setSelected] = useState("");
 
+  // Handle continue with selected category
   const onContinue = () => {
     if (!selected) return toast.error(MSG_ERR_CATEGORY_MISSING);
 
@@ -61,6 +64,7 @@ export default function Page() {
     }
   };
 
+  // Switch to user signup
   const handleUserLogin = () => {
     try {
       setLoading(true);

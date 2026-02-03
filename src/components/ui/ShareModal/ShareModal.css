@@ -170,15 +170,18 @@
 .share-options button.linkedin {
   color: #0a66c2;
 }
+
 .share-options button.linkedin:hover {
   background: #0a66c2;
   color: #fff;
   box-shadow: 0 0 32px rgba(10, 102, 194, 0.65);
 }
 
+/* Instagram */
 .share-options button.instagram {
   color: #e1306c;
 }
+
 .share-options button.instagram:hover {
   background: linear-gradient(
     135deg,
@@ -190,9 +193,11 @@
   box-shadow: 0 0 34px rgba(225, 48, 108, 0.6);
 }
 
+/* YouTube */
 .share-options button.youtube {
   color: #ff0000;
 }
+
 .share-options button.youtube:hover {
   background: #ff0000;
   color: #fff;
@@ -239,6 +244,7 @@
   }
 }
 
+/* Slide up animation for mobile */
 @keyframes slideUp {
   from {
     transform: translateY(100%);
@@ -247,3 +253,4 @@
     transform: translateY(0);
   }
 }
+

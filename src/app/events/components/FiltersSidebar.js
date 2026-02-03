@@ -11,6 +11,10 @@ const Select = dynamic(() => import("react-select"), {
   ssr: false,
 });
 
+/* FiltersSidebar Component
+ * Sidebar component with all event filter options
+ * Uses react-select for multi-select and single-select dropdowns
+ */
 export default function FiltersSidebar({
   categories = [],
   eventTypes = [],

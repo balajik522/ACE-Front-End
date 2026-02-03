@@ -6,6 +6,10 @@ import {
 } from "../../../const-value/config-icons/page";
 import { FaThLarge, FaListUl } from "react-icons/fa";
 
+/* SortBar Component
+ * Search input and sort dropdown for event lists
+ * Includes location filter (currently commented out)
+ */
 export default function SortBar({ value, onChange, onSearch }) {
   return (
     <div className="sort-bar">

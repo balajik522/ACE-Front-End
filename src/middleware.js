@@ -6,6 +6,7 @@ import { NextResponse } from "next/server";
 
 const PUBLIC_EXACT = ["/", "/unauthorized"];
 
+// Routes with public access by prefix
 const PUBLIC_PREFIX = [
   "/about",
   "/contact",
@@ -18,6 +19,7 @@ const PUBLIC_PREFIX = [
   "/auth",
 ];
 
+// Routes that require authentication
 const PROTECTED_PREFIX = ["/dashboard"];
 
 /* ===============================
@@ -28,11 +30,11 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   /* --------------------------------
-     Ignore static & API completely
+     Exclude static assets, API proxy routes, and common file extensions
   --------------------------------- */
   if (
     pathname.startsWith("/_next") ||
-    pathname.startsWith("/api/proxy") || // 🔥 IMPORTANT
+    pathname.startsWith("/api/proxy") || // Critical: Bypass proxy for direct API calls
     pathname.startsWith("/images") ||
     pathname.match(/\.(png|jpg|jpeg|svg|css|js|ico)$/)
   ) {

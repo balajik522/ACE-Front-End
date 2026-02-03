@@ -9,6 +9,7 @@ import {
 
 import "../../../organization/auth-common.css";
 
+// Account verification success page
 export default function Page() {
 
   return (

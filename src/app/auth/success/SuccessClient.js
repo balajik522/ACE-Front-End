@@ -12,11 +12,13 @@ import {
   TITLE_ALREADY_HAVE_ACCOUNT,
 } from "../../../const-value/config-message/page";
 
+// Success page client component
 export default function SuccessClient() {
   const params = useSearchParams();
   const role = params.get("role") || ROLE_USER;
 
-
+  
+  // Role-based UI configuration
   const config = {
     user: {
       image: "/images/auth-forgot.png",

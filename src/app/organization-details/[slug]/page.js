@@ -3,7 +3,6 @@ import OrganizationClient from "./OrganizationClient";
 
 /* ================= SEO ================= */
 export async function generateMetadata({ params }) {
-  //  MUST await params
   const { slug } = await params;
 
   try {
@@ -53,7 +52,6 @@ export async function generateMetadata({ params }) {
 
 /* ================= PAGE ================= */
 export default async function Page({ params }) {
-  // MUST await params here also
   const { slug } = await params;
 
   return <OrganizationClient slug={slug} />;

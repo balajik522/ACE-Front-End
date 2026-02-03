@@ -1,3 +1,6 @@
+/* =========================
+   WRAPPER - Container for all rank cards
+========================= */
 .wrapper {
   display: flex;
   justify-content: center;
@@ -15,6 +18,7 @@
   text-align: center;
   color: #fff;
 }
+
 .avatarFallbackSection{
   display: flex;
   justify-content: center;
@@ -57,10 +61,12 @@
   transform: translateY(-40px);
 }
 
+/* SECOND - Silver winner */
 .second {
   background: linear-gradient(180deg, #0b3c8a, #062e6f);
 }
 
+/* THIRD - Bronze winner */
 .third {
   background: linear-gradient(180deg, #8a0022, #630017);
 }

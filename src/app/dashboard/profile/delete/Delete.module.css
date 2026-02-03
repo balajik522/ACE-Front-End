@@ -1,9 +1,11 @@
+/* Delete profile wrapper */
 .wrapper {
   padding: 20px;
   background-color: var(--white);
   border-radius: 0px 0px 20px 20px;
 }
 
+/* Confirmation box */
 .confirmBox {
   background: #f5f5f5;
   padding-bottom: 20px;
@@ -29,12 +31,14 @@
   font-family: var(--font-poppins), sans-serif;
 }
 
+/* Button row */
 .btnRow {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 
+/* Cancel button */
 .cancelBtn {
   background: #fff;
   border: 1px solid #000;
@@ -45,6 +49,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Delete button */
 .deleteBtn {
   background: #7a12ff;
   border: none;
@@ -57,6 +62,7 @@
 
 }
 
+/* Success state */
 .successBox {
   background: #f5f5f5;
   padding: 60px;
@@ -67,6 +73,7 @@
   font-weight: 700;
 }
 
+/* Mobile responsive */
 @media (max-width: 600px) {
   .confirmBox {
     padding: 25px;
@@ -89,3 +96,4 @@
     padding: 40px;
   }
 }
+

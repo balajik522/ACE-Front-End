@@ -43,10 +43,12 @@ import {
 
 import { useLoading } from "../../../../context/LoadingContext";
 
+// Organizer login page component
 export default function OrganizerLoginPage() {
   const router = useRouter();
   const { setLoading } = useLoading();
 
+  // Form state management
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
@@ -100,6 +102,7 @@ export default function OrganizerLoginPage() {
     router.push("/auth/user/login");
   };
 
+  // Reset loading state on mount
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -148,7 +151,7 @@ export default function OrganizerLoginPage() {
               </span>
             </div>
 
-            {/* FORGOT */}
+            {/* FORGOT PASSWORD*/}
             <div className="forgot">
               <a href="/auth/forgot-password">{TEXT_FORGOT_PASSWORD}</a>
             </div>

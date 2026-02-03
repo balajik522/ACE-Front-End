@@ -1,3 +1,4 @@
+/* Stepper container - displays multi-step progress with numbered indicators */
 .stepperWrap {
   display: flex;
   justify-content: space-between;
@@ -5,12 +6,14 @@
   margin-bottom: 40px;
 }
 
+/* Individual step item - contains circle indicator and label */
 .stepItem {
   flex: 1;
   text-align: center;
   opacity: 0.4;
 }
 
+/* Step label text styling */
 .stepItem p {
   margin-top: 10px;
   font-size: 12px;
@@ -19,6 +22,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Circle indicator - contains step icon/image */
 .circle {
   width: 80px;
   height: 80px;
@@ -30,16 +34,19 @@
   justify-content: center;
 }
 
+/* Responsive icon sizing within circle */
 .circle img {
   width: 85px;
   height: 84px;
   object-fit: contain;
 }
 
+/* Active step state - full opacity for current step */
 .active {
   opacity: 1;
 }
 
+/* Active circle styling - elevated with subtle shadow ring */
 .active .circle {
   background: #ffffff;
   box-shadow: 0 0 0 6px #f1e7ff;

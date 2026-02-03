@@ -8,6 +8,7 @@ import ProfileHeader from "./components/ProfileHeader/ProfileHeader";
 export default function DashboardLayout({ children }) {
   const pathname = usePathname();
 
+  // Determine if the profile header should be hidden based on the current path
   // space/create pages la ProfileHeader hide
   const hideProfileHeader = pathname.startsWith("/dashboard/space");
 

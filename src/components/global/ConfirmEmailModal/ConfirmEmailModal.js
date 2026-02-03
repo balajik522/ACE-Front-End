@@ -1,8 +1,14 @@
 "use client";
 
+// React hooks for state management and side effects
 import { useState, useEffect } from "react";
 import "./ConfirmEmailModal.css";
 
+/**
+ * ConfirmEmailModal Component
+ * Email confirmation dialog that requires user to type their email
+ * Used for verifying user identity before critical actions
+ */
 export default function ConfirmEmailModal({
   open,
   email,
@@ -13,14 +19,18 @@ export default function ConfirmEmailModal({
   onConfirm,
   onCancel,
 }) {
+  // User input state
   const [input, setInput] = useState("");
 
+  // Reset input when modal opens
   useEffect(() => {
     if (open) setInput("");
   }, [open]);
 
+  // Don't render if hidden
   if (!open) return null;
 
+  // Validation: input must match email exactly
   const isValid = input === email;
 
   return (
@@ -33,6 +43,7 @@ export default function ConfirmEmailModal({
           <strong>{email}</strong>
         </p>
 
+        {/* Email input with paste/drop prevention */}
         <input
           type="email"
           placeholder="Type your email"
@@ -44,6 +55,7 @@ export default function ConfirmEmailModal({
           spellCheck={false}
         />
 
+        {/* Action buttons */}
         <div className="confirm-actions">
           <button className="btn-cancel" onClick={onCancel}>
             {cancelText}
@@ -61,3 +73,4 @@ export default function ConfirmEmailModal({
     </div>
   );
 }
+

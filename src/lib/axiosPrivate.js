@@ -1,21 +1,26 @@
 import axios from "axios";
 import { getAuthToken, clearAuthSession } from "./auth";
 
+// ============================================
+// PRIVATE API CLIENT
+// Axios instance with auth token and interceptors
+// ============================================
+
 const apiPrivate = axios.create({
   baseURL:
     typeof window === "undefined"
       ? process.env.NEXT_PUBLIC_API_URL
       : "/api/proxy",
-  withCredentials: true, // cookie support (if backend uses it)
+  withCredentials: true, // Enable cookie-based authentication
 });
 
 /* ================= REQUEST INTERCEPTOR ================= */
 apiPrivate.interceptors.request.use(
   (config) => {
-    // 🔑 GET JWT TOKEN FROM SESSION
+    // Retrieve JWT token from session storage
     const token = getAuthToken();
 
-    // 🔥 ATTACH BEARER TOKEN
+    // Add Bearer token to Authorization header
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -32,7 +37,7 @@ apiPrivate.interceptors.response.use(
     const status = error?.response?.status;
 
     if (status === 401 && typeof window !== "undefined") {
-      // clear session + redirect
+      // Clear session and redirect to unauthorized page
       await clearAuthSession();
       window.location.href = "/unauthorized";
     }

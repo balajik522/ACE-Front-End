@@ -1,3 +1,7 @@
+/**
+ * BookingEventsPage - Displays user's booked/saved events with pagination
+ */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -5,7 +9,10 @@ import styles from "./Booking.module.css";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
+// Context providers for managing global loading state
 import { useLoading } from "../../../../context/LoadingContext";
+
+// Icon components for displaying event metadata
 import {
   COLOR_SAVED_ICON,
   DATEICON,
@@ -14,6 +21,7 @@ import {
   VIEW_ICON,
 } from "../../../../const-value/config-icons/page";
 
+// API functions for fetching user data
 import { getSavedEventsApi } from "../../../../lib/api/auth.api";
 
 // 🔐 SESSION AUTH
@@ -22,27 +30,39 @@ import {
   isUserLoggedIn,
 } from "../../../../lib/auth";
 
+/**
+ * Configuration constant for pagination
+ * Determines how many events are displayed per page
+ */
 const PAGE_SIZE = 6;
 
+// Booked events page component
 export default function BookingEventsPage() {
+  // Context and router hooks
   const { setLoading } = useLoading();
   const router = useRouter();
 
+  // Event data state
   const [events, setEvents] = useState([]);
   const [localLoading, setLocalLoading] = useState(true);
   const [page, setPage] = useState(1);
 
-  // 🔐 SESSION AUTH STATE
+  // Authentication state
   const [auth, setAuth] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  /* ================= STOP GLOBAL LOADER ON PAGE LOAD ================= */
+  /**
+   * Effect: Initialize page and check authentication status
+  */
   useEffect(() => {
+    // Disable global loading spinner for this page
     setLoading(false);
 
+    // Check user login status
     const loggedIn = isUserLoggedIn();
     setIsLoggedIn(loggedIn);
 
+    // Retrieve session auth data if user is logged in
     if (loggedIn) {
       setAuth(getAuthFromSession());
     }
@@ -53,16 +73,20 @@ export default function BookingEventsPage() {
     try {
       setLocalLoading(true);
 
+      // Validate user is authenticated with valid identity
       if (!isLoggedIn || !auth?.identity) {
         setEvents([]);
         return;
       }
 
+      // Fetch saved events from API
       const res = await getSavedEventsApi(auth.identity);
 
+      // Handle successful response
       if (res?.status) {
         setEvents(res.data?.events || []);
       } else {
+        // Handle API error response
         toast.error(res?.message || "Failed to load booked events");
         setEvents([]);
       }
@@ -70,10 +94,14 @@ export default function BookingEventsPage() {
       toast.error("Something went wrong");
       setEvents([]);
     } finally {
+      // Always stop local loading indicator
       setLocalLoading(false);
     }
   };
 
+  /**
+   * Effect: Load events when authentication state changes
+   */
   useEffect(() => {
     loadEvents();
   }, [isLoggedIn, auth?.identity]);
@@ -83,7 +111,14 @@ export default function BookingEventsPage() {
   const start = (page - 1) * PAGE_SIZE;
   const visibleEvents = events.slice(start, start + PAGE_SIZE);
 
-  /* ================= LOCAL LOADING ================= */
+  // ==========================================================================
+  // RENDER STATES
+  // ==========================================================================
+
+  /**
+   * Renders loading state while events are being fetched
+   * Displays a centered message indicating data is loading
+   */
   if (localLoading) {
     return (
       <div className={styles.wrapper}>
@@ -92,7 +127,10 @@ export default function BookingEventsPage() {
     );
   }
 
-  /* ================= EMPTY STATE ================= */
+  /**
+   * Renders empty state when user has no booked events
+   * Displays an illustration and call-to-action to explore events
+   */
   if (!events.length) {
     return (
       <div className={styles.wrapper}>
@@ -108,11 +146,14 @@ export default function BookingEventsPage() {
     );
   }
 
-  /* ================= UI (UNCHANGED) ================= */
+  /**
+   * Renders the main events grid with pagination
+   */
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.title}>Booked Events</h2>
 
+      {/* Events Grid */}
       <div className={styles.grid}>
         {visibleEvents.map((e) => (
           <div
@@ -120,22 +161,27 @@ export default function BookingEventsPage() {
             className={styles.card}
             onClick={() => router.push(`/events/${e.slug}`)}
           >
+            {/* Event Banner Image */}
             <div className={styles.imageWrap}>
               <img
                 src={e.bannerImages?.[0] || "/images/event.png"}
                 alt={e.title}
               />
+              {/* Offer badge for events with promotions */}
               {e.offers && (
                 <span className={styles.offer}>Offers</span>
               )}
             </div>
 
+            {/* Event Details */}
             <div className={styles.content}>
+              {/* Title and save status */}
               <div className={styles.topcontent}>
                 <h4 title={e.title}>{e.title}</h4>
                 <div>{COLOR_SAVED_ICON}</div>
               </div>
 
+              {/* Location and ticket price metadata */}
               <div className={styles.meta}>
                 <span>
                   {LOCATION_ICON} {e.location?.city || "N/A"}
@@ -145,6 +191,7 @@ export default function BookingEventsPage() {
                 </span>
               </div>
 
+              {/* Date and view count footer */}
               <div className={styles.bottom}>
                 <span>
                   {DATEICON}{" "}
@@ -170,6 +217,7 @@ export default function BookingEventsPage() {
       {/* ================= PAGINATION ================= */}
       {totalPages > 1 && (
         <div className={styles.pagination}>
+          {/* Previous page button - disabled on first page */}
           <button
             disabled={page === 1}
             onClick={() => setPage((p) => p - 1)}
@@ -177,6 +225,7 @@ export default function BookingEventsPage() {
             Prev
           </button>
 
+          {/* Page number buttons */}
           {Array.from({ length: totalPages }).map((_, i) => (
             <button
               key={i}
@@ -187,6 +236,7 @@ export default function BookingEventsPage() {
             </button>
           ))}
 
+          {/* Next page button - disabled on last page */}
           <button
             disabled={page === totalPages}
             onClick={() => setPage((p) => p + 1)}
@@ -198,3 +248,4 @@ export default function BookingEventsPage() {
     </div>
   );
 }
+

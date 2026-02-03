@@ -1,9 +1,11 @@
+/* Email settings wrapper */
 .wrapper {
   padding: 20px;
   background: #ffffff;
   border-radius: 0 0 20px 20px;
 }
 
+/* Page heading */
 .heading {
   font-size: 22px;
   font-weight: 700;
@@ -11,6 +13,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Email settings card */
 .card {
   width: 100%;
   background: #ffffff;
@@ -75,8 +78,10 @@ input:checked + .slider::before {
   transform: translateX(20px);
 }
 
+/* Mobile responsive */
 @media (max-width: 600px) {
   .card {
     padding: 16px;
   }
 }
+

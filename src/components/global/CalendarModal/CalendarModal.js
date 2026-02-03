@@ -1,27 +1,39 @@
 "use client";
 
+// React hooks for state, effects, and refs
 import { useState, useEffect, useRef } from "react";
 import styles from "./CalendarModal.module.css";
+// Icons for add and delete actions
 import { ADDICON, DELETICON } from "../../../const-value/config-icons/page";
+
+/**
+ * CalendarModal Component
+ * Modal for scheduling events with date and time selection
+ * Supports single and multi-date event scheduling
+ */
 export default function CalendarModal({ onClose, onSave }) {
 
   const [multiDate, setMultiDate] = useState(false);
+  // State for managing multiple date-time rows
   const [rows, setRows] = useState([
     { startDate: "", startTime: "", endDate: "", endTime: "" },
   ]);
 
   const rowsRef = useRef(null);
 
+  // Get today's date and current time for validation
   const today = new Date().toISOString().split("T")[0];
   const nowTime = new Date().toTimeString().slice(0, 5);
 
 
+  // Auto-scroll to bottom when new rows are added
   useEffect(() => {
     if (rowsRef.current) {
       rowsRef.current.scrollTop = rowsRef.current.scrollHeight;
     }
   }, [rows.length]);
 
+  // Adds a new date-time row for multi-date scheduling
   const addRow = () => {
     setRows([
       ...rows,
@@ -29,10 +41,12 @@ export default function CalendarModal({ onClose, onSave }) {
     ]);
   };
 
+  // Removes a specific date-time row
   const removeRow = (index) => {
     setRows(rows.filter((_, i) => i !== index));
   };
 
+  // Updates a specific field in a row with validation
   const updateRow = (index, field, value) => {
     const updated = [...rows];
     updated[index][field] = value;
@@ -45,6 +59,7 @@ export default function CalendarModal({ onClose, onSave }) {
       }
     }
 
+    // Reset invalid end time when start time changes on same day
     if (field === "startTime") {
       if (
         updated[index].endDate === updated[index].startDate &&
@@ -73,12 +88,14 @@ export default function CalendarModal({ onClose, onSave }) {
 
         {/* DATE ROWS */}
         <div className={styles.rowsContainer} ref={rowsRef}>
+          {/* Add row button for multi-date mode */}
           {multiDate && (
             <div className={styles.addRow} onClick={addRow}>
               {ADDICON} Add
             </div>
           )}
 
+          {/* Render date-time input rows */}
           {rows.map((row, index) => (
             <div key={index} className={styles.rowGrid}>
               <div className={styles.field}>
@@ -145,6 +162,7 @@ export default function CalendarModal({ onClose, onSave }) {
                 />
               </div>
 
+              {/* Delete button for multi-date rows */}
               {multiDate && index > 0 && (
                 <div
                   className={styles.deleteIcon}
@@ -180,6 +198,7 @@ export default function CalendarModal({ onClose, onSave }) {
           </button>
         </div>
 
+        {/* Close button */}
         <button className={styles.close} onClick={onClose}>
           ✕
         </button>
@@ -187,3 +206,4 @@ export default function CalendarModal({ onClose, onSave }) {
     </div>
   );
 }
+

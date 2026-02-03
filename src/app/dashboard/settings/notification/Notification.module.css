@@ -1,9 +1,11 @@
+/* Notification settings wrapper */
 .wrapper {
   padding: 20px;
   background: #ffffff;
   border-radius: 0 0 20px 20px;
 }
 
+/* Page heading */
 .heading {
   font-size: 22px;
   font-weight: 700;
@@ -11,6 +13,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Notification card */
 .card {
   width: 100%;
   background: #ffffff;
@@ -23,6 +26,7 @@
   align-items: center;
 }
 
+/* Card left section */
 .left {
   display: flex;
   align-items: center;
@@ -43,6 +47,7 @@
   font-family: var(--font-poppins), sans-serif;
 }
 
+/* Icon styles */
 .icon {
   font-size: 28px;
   color: #000000;
@@ -88,6 +93,7 @@ input:checked + .slider::before {
   transform: translateX(20px);
 }
 
+/* Mobile responsive */
 @media (max-width: 600px) {
   .left {
     gap: 12px;
@@ -96,3 +102,4 @@ input:checked + .slider::before {
     font-size: 22px;
   }
 }
+

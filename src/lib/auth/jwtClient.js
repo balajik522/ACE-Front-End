@@ -1,5 +1,10 @@
 import { jwtDecode } from "jwt-decode";
 
+// ============================================
+// JWT COOKIE CLIENT
+// Reads and decodes auth token from cookies
+// ============================================
+
 /**
  * Read cookie by name
  */

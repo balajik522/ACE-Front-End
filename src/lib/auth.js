@@ -44,10 +44,10 @@ export const setAuthSession = (token) => {
     const decoded = jwtDecode(token);
 
     const authPayload = {
-      token, // 🔥 VERY IMPORTANT (Bearer token)
+      token, // Critical: Bearer token for API authentication
       identity: decoded?.data?.identity || null,
       email: decoded?.data?.email || null,
-      type: decoded?.data?.type || null, // "user" | "org"
+      type: decoded?.data?.type || null, // User type: "user" or "org"
       roleId: decoded?.data?.roleId || null,
       exp: decoded?.exp || null,
     };
@@ -110,7 +110,7 @@ export const clearAuthSession = async () => {
 
   sessionStorage.removeItem("auth");
 
-  // backend logout (cookie clear if any)
+  // Call backend logout endpoint to clear server-side session cookies
   await fetch("/api/logout", {
     method: "POST",
     credentials: "include",

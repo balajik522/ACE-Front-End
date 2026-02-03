@@ -2,6 +2,11 @@
 import { useState } from "react";
 import "./OrganizationModal.css";
 
+/**
+ * OrganizationModal Component
+ * Modal for editing organization/collaborator details
+ * Allows editing organizer name and number for each organization
+ */
 export default function OrganizationModal({ orgs = [], onClose, onSave }) {
 
   // 🔑 editable local state
@@ -19,6 +24,7 @@ export default function OrganizationModal({ orgs = [], onClose, onSave }) {
     setEditableOrgs(updated);
   };
 
+  // Prepare and send payload on save
   const handleSave = () => {
     const payload = {
       collaborators: editableOrgs.map((org) => ({
@@ -113,3 +119,4 @@ export default function OrganizationModal({ orgs = [], onClose, onSave }) {
     </div>
   );
 }
+

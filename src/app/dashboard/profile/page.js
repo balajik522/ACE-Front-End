@@ -20,6 +20,7 @@ import {
   isUserLoggedIn,
 } from "../../../lib/auth";
 
+// Profile page component
 export default function ProfilePage() {
   const fileRef = useRef(null);
   const router = useRouter();
@@ -29,6 +30,7 @@ export default function ProfilePage() {
   const [auth, setAuth] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  // Profile and form state
   const [profile, setProfile] = useState(null);
   const [mode, setMode] = useState("view");
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -128,6 +130,7 @@ export default function ProfilePage() {
     }
   };
 
+  // Password reset handler
   const handleSendResetMail = () => {
     setShowConfirmModal(false);
     router.push("/auth/forgot-password");
@@ -135,21 +138,25 @@ export default function ProfilePage() {
 
   if (!profile) return null;
 
-  /* ================= UI (UNCHANGED) ================= */
+  /* ================= UI RENDER ================= */
   return (
     <div className={styles.profileWrapper}>
+      {/* ================= VIEW MODE ================= */}
       {mode === "view" && (
         <div className={styles.viewBox}>
+          {/* NAME DISPLAY */}
           <div>
             <label>Full Name</label>
             <p>{form.name}</p>
           </div>
 
+          {/* EMAIL DISPLAY */}
           <div>
             <label>Email</label>
             <p>{form.email}</p>
           </div>
 
+          {/* EDIT ICON */}
           <img
             src="/images/Pen.png"
             className={styles.editIcon}
@@ -159,8 +166,10 @@ export default function ProfilePage() {
         </div>
       )}
 
+      {/* ================= EDIT MODE ================= */}
       {mode === "edit" && (
         <div className={styles.editBox}>
+          {/* LEFT COLUMN - FORM FIELDS */}
           <div className={styles.left}>
             <label>Full Name</label>
             <input
@@ -173,6 +182,7 @@ export default function ProfilePage() {
             <label>Email</label>
             <input value={form.email} disabled />
 
+            {/* CHANGE PASSWORD LINK */}
             <span
               className={styles.changePassword}
               onClick={() => setShowConfirmModal(true)}
@@ -181,7 +191,9 @@ export default function ProfilePage() {
             </span>
           </div>
 
+          {/* RIGHT COLUMN - IMAGE UPLOAD */}
           <div>
+            {/* UPLOAD BOX OR PREVIEW */}
             {!imagePreview ? (
               <div
                 className={styles.uploadBox}
@@ -197,6 +209,7 @@ export default function ProfilePage() {
               />
             )}
 
+            {/* HIDDEN FILE INPUT */}
             <input
               ref={fileRef}
               type="file"
@@ -210,6 +223,7 @@ export default function ProfilePage() {
               }}
             />
 
+            {/* ACTION BUTTONS */}
             <div className={styles.btnRow}>
               <button
                 className={styles.cancelBtn}
@@ -228,6 +242,7 @@ export default function ProfilePage() {
         </div>
       )}
 
+      {/* ================= PASSWORD RESET MODAL ================= */}
       <ConfirmModal
         open={showConfirmModal}
         title="Reset Password"
@@ -239,3 +254,4 @@ export default function ProfilePage() {
     </div>
   );
 }
+

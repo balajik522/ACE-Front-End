@@ -38,6 +38,7 @@ export const likeEventApi = async (payload) => {
   return handleApi(apiPrivate.post(API_ENDPOINTS.EVENTS.LIKE_EVENT , payload));
 };
 
+// SAVE EVENT (auth required)
 export const saveEventApi = async (payload) => {
  return handleApi(apiPrivate.post(API_ENDPOINTS.EVENTS.SAVE_EVENT , payload));
 };
@@ -58,10 +59,12 @@ export const getOrganizerEventsApi = async (orgId) => {
   return handleApi(apiPrivate.get(API_ENDPOINTS.ORGANIZER.EVENTS(orgId)));
 };
 
+// DELETE EVENT
 export const deleteEventApi = async (eventId) => {
   return handleApi(apiPrivate.delete(`/event/delete/${eventId}`));
 };
 
+// UPDATE EVENT
 export const updateEventApi = async (eventId, formData) => {
   return handleApi(
     apiPrivate.put(`/v1/events/${eventId}`, formData, {

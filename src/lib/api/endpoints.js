@@ -1,3 +1,8 @@
+// ============================================
+// API ENDPOINTS CONFIGURATION
+// Defines all backend API routes
+// ============================================
+
 export const API_ENDPOINTS = {
   /* ================= EVENTS ================= */
   EVENTS: {

@@ -1,9 +1,23 @@
+/**
+ * Proxy API Route
+ * Forwards incoming requests to the backend server and relays responses back to the client.
+ * This enables the frontend to communicate with backend APIs while handling CORS and cookies.
+ */
+
 import { NextResponse } from "next/server";
 
+// Base URL for the backend API, configured via environment variables
 const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
+/**
+ * Handles all incoming proxy requests.
+ * Extracts the path from the request URL, forwards it to the backend,
+ * and returns the backend response to the client.
+ *
+ */
 async function handler(req) {
   try {
+    // Extract pathname and search parameters from the request URL
     const { pathname, search } = req.nextUrl;
 
     // remove "/api/proxy" from path
@@ -21,6 +35,7 @@ async function handler(req) {
 
     /* ================= BODY ================= */
     let body = null;
+    // For non-GET and non-HEAD requests, read the request body as an ArrayBuffer
     if (req.method !== "GET" && req.method !== "HEAD") {
       body = await req.arrayBuffer();
     }
@@ -30,7 +45,7 @@ async function handler(req) {
       method: req.method,
       headers,
       body,
-      credentials: "include", // 🔐 VERY IMPORTANT
+      credentials: "include",
       cache: "no-store",
     });
 
@@ -53,12 +68,15 @@ async function handler(req) {
     /* ================= RESPONSE BODY ================= */
     const responseBody = await backendRes.arrayBuffer();
 
+    // Return the response with the backend's status code and processed headers
     return new NextResponse(responseBody, {
       status: backendRes.status,
       headers: responseHeaders,
     });
   } catch (error) {
+    // Log any proxy errors for debugging purposes
     console.error("PROXY ERROR:", error);
+    // Return a 503 Service Unavailable response if the backend fails
     return NextResponse.json(
       {
         message: "Backend not responding",

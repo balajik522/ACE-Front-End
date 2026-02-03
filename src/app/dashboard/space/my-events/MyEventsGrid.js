@@ -16,6 +16,7 @@ export default function MyEventsGrid({ events = [], loading }) {
   const [openMenuId, setOpenMenuId] = useState(null);
   const router = useRouter();
 
+  // Navigate to the event dashboard
   const handleClick = (event) => {
     router.push(`/dashboard/space/dashboard-chart/${event.slug}`);
   };

@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import styles from "./Email.module.css";
 
+// Email settings page component
 export default function EmailSettingsPage() {
+  // Email notification preferences
   const [created, setCreated] = useState(true);
   const [status, setStatus] = useState(false);
   const [completed, setCompleted] = useState(false);
@@ -66,3 +68,4 @@ export default function EmailSettingsPage() {
     </div>
   );
 }
+

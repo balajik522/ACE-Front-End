@@ -1,3 +1,4 @@
+/* ===== CHILD OVERLAY - Fullscreen backdrop ===== */
 .child-overlay {
   position: fixed;
   inset: 0;
@@ -8,6 +9,7 @@
   z-index: 10000;
 }
 
+/* ===== CHILD MODAL BOX ===== */
 .child-modal {
   background: #fff;
   border-radius: 18px;
@@ -17,6 +19,7 @@
   overflow-y: auto;
 }
 
+/* ===== HEADER SECTION ===== */
 .modal-header {
   display: flex;
   align-items: center;
@@ -31,6 +34,7 @@
   cursor: pointer;
 }
 
+/* ===== ORGANIZATION SECTION ===== */
 .org-section {
   margin-bottom: 28px;
 }
@@ -40,6 +44,7 @@
   margin-bottom: 14px;
 }
 
+/* ===== ORGANIZATION GRID ===== */
 .org-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -60,10 +65,12 @@
   border: 1px solid #e5e5e5;
   background: #f1f1f1;
 }
+
 .modal-body input:focus {
   border-color: #7a12ff;
 }
 
+/* ===== FOOTER SECTION ===== */
 .modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -71,6 +78,7 @@
   margin-top: 30px;
 }
 
+/* ===== OUTLINE BUTTON ===== */
 .outline-btn {
   padding: 10px 24px;
   border-radius: 22px;
@@ -79,6 +87,7 @@
   color: #7a12ff;
 }
 
+/* ===== PRIMARY BUTTON ===== */
 .primary-btn {
   padding: 10px 28px;
   border-radius: 22px;
@@ -86,6 +95,8 @@
   background: #7a12ff;
   color: #fff;
 }
+
+/* ===== READONLY HIGHLIGHT ===== */
 .readonly-highlight {
   background: #ededed;
   color: #777;

@@ -14,6 +14,10 @@ import {
 import styles from "./Footer.module.css";
 import { useRouter } from "next/navigation";
 
+/**
+ * Footer - Site-wide footer component
+ * Contains brand info, newsletter subscription, navigation links, and social media
+ */
 export default function Footer() {
   const router = useRouter();
   return (
@@ -58,6 +62,7 @@ export default function Footer() {
 
         {/* Links */}
         <div className={styles.links}>
+          {/* Social media and contact */}
           <div className={styles.socialBlock}>
             <div className={styles.socials}>
               {FOOTER_FACEBOOK}

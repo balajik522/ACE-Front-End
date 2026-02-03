@@ -33,39 +33,48 @@ import {
 import { signupApi } from "../../../../../lib/api/auth.api";
 import { useLoading } from "../../../../../context/LoadingContext";
 
+// Account creation client component
 export default function SignupAccountClient() {
   const router = useRouter();
   const params = useSearchParams();
   const { setLoading } = useLoading(); 
 
+  // URL query parameters for registration flow
   const category = params.get("cat");
   const country = params.get("country");
   const state = params.get("state");
   const city = params.get("city");
   const orgName = params.get("orgName");
 
+  // Form state management
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
 
+  // Password visibility toggles
   const [showPass1, setShowPass1] = useState(false);
   const [showPass2, setShowPass2] = useState(false);
 
+  // Handle form submission
   async function onSubmit(e) {
     e.preventDefault();
 
+    // Validate required fields
     if (!email || !password || !confirm)
       return toast.error(MSG_ERR_FILL_ALL_FIELDS);
 
+    // Validate password match
     if (password !== confirm)
       return toast.error(MSG_ERR_PASSWORD_MISMATCH);
 
+    // Validate category selection
     if (!category)
       return toast.error(MSG_ERR_CATEGORY_MISSING);
 
     try {
       setLoading(true); 
 
+      // Submit registration data
       const res = await signupApi({
         org_cat: category,
         country,
@@ -78,6 +87,7 @@ export default function SignupAccountClient() {
         platform: "web",
       });
 
+      // Handle registration response
       if (!res?.status) {
         toast.error(res?.message || MSG_ERR_SIGNUP_FAILED);
         return;

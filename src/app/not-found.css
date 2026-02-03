@@ -1,3 +1,8 @@
+/* Not Found Page Styles
+ * 404 error page layout and component styling
+ */
+
+/* Page wrapper - full viewport height with centered content */
 .nf-wrapper {
   min-height: 100vh;
   width: 100%;
@@ -6,21 +11,26 @@
   justify-content: center;
 }
 
+/* Content container - centered text with padding */
 .nf-content {
   text-align: center;
   padding: 20px;
 }
+
+/* 404 illustration image - responsive sizing */
 .nf-image {
   max-width: 90%;
   max-height: 37vh;
   object-fit: contain;
 }
 
+/* Error icon - large visual indicator */
 .nf-icon {
   font-size: 70px;
   vertical-align: middle;
 }
 
+/* Page title - bold heading for 404 message */
 .nf-title {
   margin-top: 10px;
   font-size: 28px;
@@ -28,6 +38,7 @@
   color: #000;
 }
 
+/* Error code - stylized ERROR text with letter spacing */
 .nf-error {
   letter-spacing: 6px;
   font-size: 26px;
@@ -35,6 +46,7 @@
   margin: 10px 0;
 }
 
+/* Error description - centered helper text */
 .nf-desc {
   font-size: 14px;
   color: #9e9e9e;
@@ -42,6 +54,7 @@
   margin: 0 auto 30px;
 }
 
+/* Back button - gradient filled action button */
 .nf-btn {
   background: linear-gradient(90deg, #7b2cff, #6a00ff);
   color: #fff;
@@ -53,6 +66,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Button hover - lift and shadow effect */
 .nf-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(106, 0, 255, 0.3);

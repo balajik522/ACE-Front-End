@@ -1,7 +1,13 @@
 "use client";
 
+// App landing hero section styles
 import styles from "./AppLandingHero.module.css";
 
+/**
+ * AppLandingHero Component
+ * Hero section for app promotion with download links
+ * Displays app promotional image and store badges
+ */
 export default function AppLandingHero() {
   return (
     <section className={styles.root}>
@@ -45,3 +51,4 @@ export default function AppLandingHero() {
     </section>
   );
 }
+

@@ -4,6 +4,10 @@ import styles from "./OrganizerCarousel.module.css";
 import { useRouter } from "next/navigation";
 import { useLoading } from "../../../context/LoadingContext";
 
+/**
+ * OrganizersCarousel - Displays top organizers in a horizontal list
+ * Shows organizer avatars with event counts and links to leaderboard
+ */
 export default function OrganizersCarousel({ data = [] }) {
   const router = useRouter();
   const { setLoading } = useLoading();
@@ -11,6 +15,7 @@ export default function OrganizersCarousel({ data = [] }) {
   if (!Array.isArray(data) || data.length === 0) return null;
 
   /* ================= ORGANIZER CLICK ================= */
+  // Navigate to organizer details page
   const handleOrgClick = (slug) => {
     if (!slug) return;
 
@@ -24,6 +29,7 @@ export default function OrganizersCarousel({ data = [] }) {
   };
 
   /* ================= LEADERBOARD CLICK ================= */
+  // Navigate to leaderboard page
   const handleLeaderboardClick = () => {
     try {
       setLoading(true);
@@ -66,6 +72,7 @@ export default function OrganizersCarousel({ data = [] }) {
               style={{ cursor: "pointer" }}
             >
               <div className={styles.avatarWrap}>
+                {/* Avatar - Image or fallback letter */}
                 {org.profileImage ? (
                   <img
                     src={org.profileImage}

@@ -3,8 +3,14 @@ import { useState } from "react";
 import styles from "./faq.module.css";
 import Footer from "../../components/global/Footer/Footer";
 
+/* Tab Options
+ * Filter FAQs by category
+ */
 const TABS = ["All", "Tickets", "Event", "Price"];
 
+/* FAQ Data
+ * Pre-populated questions and answers
+ */
 const FAQ_DATA = [
   {
     q: "What types of events does this website cover?",
@@ -33,10 +39,15 @@ const FAQ_DATA = [
   },
 ];
 
+/* FAQ Page Component
+ * Displays frequently asked questions with accordion functionality
+ * Includes tab filtering and question submission form
+ */
 export default function FAQ() {
   const [activeTab, setActiveTab] = useState("All");
   const [openIndex, setOpenIndex] = useState(null);
 
+  /* Filter FAQs by selected tab */
   const filteredFaqs =
     activeTab === "All"
       ? FAQ_DATA
@@ -44,6 +55,7 @@ export default function FAQ() {
 
   return (
     <>
+      {/* Page Header */}
       <section className={styles.wrapper}>
         {/* HEADER */}
         <h2 className={styles.title}>Frequently Asked Questions</h2>
@@ -88,6 +100,7 @@ export default function FAQ() {
                   <span>{openIndex === i ? "−" : "+"}</span>
                 </button>
 
+                {/* Answer - Conditionally rendered */}
                 {openIndex === i && (
                   <div className={styles.faqAnswer}>{item.a}</div>
                 )}
@@ -107,6 +120,8 @@ export default function FAQ() {
           </div>
         </div>
       </section>
+      
+      {/* Page Footer */}
       <Footer />
     </>
   );

@@ -2,14 +2,22 @@
 import { useRef, useState } from "react";
 import "./BannerImageModal.css";
 
+/**
+ * BannerImageModal Component
+ * Modal for managing event banner images (upload, preview, delete)
+ */
 export default function BannerImageModal({
   images = [],
   onClose,
   onSave,
 }) {
+  // Hidden file input reference
   const fileRef = useRef(null);
+  
+  // Preview images state with file objects
   const [previewImages, setPreviewImages] = useState(images);
 
+  // Handle file selection from input
   const handleFiles = (files) => {
     const list = Array.from(files)
       .slice(0, 4 - previewImages.length)
@@ -21,14 +29,17 @@ export default function BannerImageModal({
     setPreviewImages((prev) => [...prev, ...list]);
   };
 
+  // Remove image from preview
   const removeImage = (index) => {
     setPreviewImages((prev) => prev.filter((_, i) => i !== index));
   };
 
+  // Save and close modal
   const handleSave = () => {
     onSave(previewImages);
   };
 
+  // Reset all images
   const handleReset = () => {
     setPreviewImages([]);
   };
@@ -95,3 +106,4 @@ export default function BannerImageModal({
     </div>
   );
 }
+

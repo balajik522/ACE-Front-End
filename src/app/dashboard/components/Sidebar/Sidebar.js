@@ -16,12 +16,15 @@ import {
   clearAuthSession,
 } from "../../../../lib/auth";
 
+// Dashboard sidebar navigation component
 export default function Sidebar() {
   const pathname = usePathname();
 
+  // UI state
   const [expanded, setExpanded] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
 
+  // Profile and auth state
   const [profile, setProfile] = useState(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
@@ -66,10 +69,12 @@ export default function Sidebar() {
     loadProfile();
   }, [isLoggedIn, auth]);
 
+  // Toggle menu expansion
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
 
+  // Arrow indicator component
   const Arrow = ({ open }) => (
     <span className={styles.arrow}>{open ? "▲" : "▼"}</span>
   );
@@ -89,6 +94,7 @@ export default function Sidebar() {
     setShowLogoutConfirm(false);
   };
 
+  // Profile display values
   const displayName =
     profile?.organizationName || profile?.name || "User";
   const displayEmail =
@@ -343,3 +349,4 @@ export default function Sidebar() {
     </aside>
   );
 }
+

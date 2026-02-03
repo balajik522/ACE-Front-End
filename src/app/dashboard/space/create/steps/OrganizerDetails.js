@@ -4,13 +4,20 @@ import { useEffect, useState } from "react";
 import { getOrgCategoriesApi } from "../../../../../lib/api/event.api";
 import styles from "./OrganizerDetails.module.css";
 
+/* OrganizerDetails Component
+ * Manages hosting information for events - supports multiple organizers
+ * Allows adding/removing collaborator organizations (max 3)
+ */
 export default function OrganizerDetails({
   data,
   resetSignal,
   setData,
   onNext,
 }) {
+  // Organization categories loaded from API
   const [orgCategories, setOrgCategories] = useState([]);
+  
+  // Organizations array - supports multiple collaborators
   const organizations = data.organizations || [
     {
       hostBy: "",
@@ -39,6 +46,7 @@ export default function OrganizerDetails({
     loadCategories();
   }, []);
 
+  /* Add new organization collaborator (max 3 allowed) */
   const addOrganization = () => {
     if (organizations.length >= 3) {
       console.warn("Maximum 3 collaborators allowed");
@@ -63,10 +71,12 @@ export default function OrganizerDetails({
     setData({ ...data, organizations: updated });
   };
 
+  /* Update organization field value at specific index */
   const updateOrg = (index, key, value) => {
     const updated = [...organizations];
     updated[index][key] = value;
 
+    // Clear department if host type doesn't require it
     if (key === "hostBy" && !showDepartment(value)) {
       updated[index].department = "";
     }
@@ -76,6 +86,7 @@ export default function OrganizerDetails({
     setData({ ...data, organizations: updated });
   };
 
+  /* Remove organization by index */
   const deleteOrganization = (index) => {
     const updated = organizations.filter((_, i) => i !== index);
 
@@ -84,6 +95,7 @@ export default function OrganizerDetails({
     setData({ ...data, organizations: updated });
   };
 
+  /* Check if selected host type requires department field */
   const showDepartment = (hostBy) => {
     const selectedCategory = orgCategories.find((c) => c.identity === hostBy);
 
@@ -97,6 +109,7 @@ export default function OrganizerDetails({
     );
   };
 
+  /* Reset form when resetSignal is triggered */
   useEffect(() => {
     if (!resetSignal) return;
 
@@ -117,14 +130,18 @@ export default function OrganizerDetails({
 
   return (
     <>
+      {/* Hosting Information Card */}
       <div className={styles.card}>
         <h3 className={styles.cardTitle}>Hosting Information</h3>
 
+        {/* Render each organization block */}
         {organizations.map((org, index) => (
           <div key={index} className={styles.orgBlock}>
+            {/* Organization header with title and delete action */}
             <div className={styles.orgHeader}>
               <span>Organization {index + 1}</span>
 
+              {/* Delete button - only show for non-first organizations */}
               {index !== 0 && (
                 <button
                   className={styles.deleteBtn}
@@ -135,6 +152,7 @@ export default function OrganizerDetails({
               )}
             </div>
 
+            {/* Event host by dropdown */}
             <div className={styles.field}>
               <label>
                 Event Host By <span>*</span>
@@ -155,7 +173,9 @@ export default function OrganizerDetails({
               </select>
             </div>
 
+            {/* Two-column grid for organization details */}
             <div className={styles.grid2}>
+              {/* Organization name input */}
               <div className={styles.field}>
                 <label>
                   Organization Name <span>*</span>
@@ -168,6 +188,7 @@ export default function OrganizerDetails({
                 />
               </div>
 
+              {/* Location input */}
               <div className={styles.field}>
                 <label>
                   Location <span>*</span>
@@ -180,6 +201,7 @@ export default function OrganizerDetails({
                 />
               </div>
 
+              {/* Organizer name input */}
               <div className={styles.field}>
                 <label>
                   Organizer Name <span>*</span>
@@ -194,6 +216,7 @@ export default function OrganizerDetails({
                 />
               </div>
 
+              {/* Organizer phone number input - numeric only */}
               <div className={styles.field}>
                 <label>
                   Organizer Number <span>*</span>
@@ -217,6 +240,7 @@ export default function OrganizerDetails({
               </div>
             </div>
 
+            {/* Department dropdown - conditionally shown based on host type */}
             {showDepartment(org.hostBy) && (
               <div className={styles.field}>
                 <label>
@@ -246,6 +270,7 @@ export default function OrganizerDetails({
           </div>
         ))}
 
+        {/* Add collaborator button */}
         <div className={styles.addWrap}>
           <button className={styles.addBtn} onClick={addOrganization}>
             + Add Collaborators
@@ -253,6 +278,7 @@ export default function OrganizerDetails({
         </div>
       </div>
 
+      {/* Form action buttons */}
       <div className={styles.actionEnd}>
         <button
           className={styles.nextBtn}

@@ -18,10 +18,19 @@ import { useLoading } from "../../../context/LoadingContext";
 
 import { likeEventApi, saveEventApi } from "../../../lib/api/event.api";
 
-/* 🔐 SESSION AUTH */
+/* =========================================
+   SESSION AUTHENTICATION
+   Manages user authentication state for event interactions
+   ========================================= */
 import { getAuthFromSession, isUserLoggedIn } from "../../../lib/auth";
 
+/**
+ * EventSlider - Horizontal scrollable event cards component
+ * Displays events with like, save, and navigation functionality
+ */
+
 /* ================= HELPER ================= */
+// Helper function to get the lowest ticket price from event tickets
 const getLowestTicketPrice = (tickets = []) => {
   if (!Array.isArray(tickets) || tickets.length === 0) return null;
 
@@ -43,6 +52,7 @@ export default function EventSlider({
   const { setLoading } = useLoading();
 
   /* ================= AUTH (SESSION) ================= */
+  // Check user authentication status on component mount
   const [auth, setAuth] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -56,11 +66,13 @@ export default function EventSlider({
   }, []);
 
   /* ================= STATE ================= */
+  // Track liked/saved events and their like counts
   const [likedCards, setLikedCards] = useState({});
   const [savedCards, setSavedCards] = useState({});
   const [likeCounts, setLikeCounts] = useState({});
 
   /* ================= INIT FROM API DATA ================= */
+  // Initialize state from incoming event data
   useEffect(() => {
     const liked = {};
     const saved = {};
@@ -89,7 +101,6 @@ export default function EventSlider({
     const eventId = event.identity;
     const wasLiked = likedCards[eventId];
 
-    // optimistic UI
     setLikedCards((prev) => ({
       ...prev,
       [eventId]: !wasLiked,
@@ -133,7 +144,6 @@ export default function EventSlider({
     const eventId = event.identity;
     const wasSaved = savedCards[eventId];
 
-    // optimistic UI
     setSavedCards((prev) => ({
       ...prev,
       [eventId]: !wasSaved,
@@ -156,6 +166,7 @@ export default function EventSlider({
   };
 
   /* ================= SLIDER ================= */
+  // Slider navigation handlers
   const slideLeft = () => {
     sliderRef.current?.scrollBy({
       left: -350,
@@ -179,6 +190,8 @@ export default function EventSlider({
     router.push(`/events`);
   };
 
+  /* ================= FORMATTERS ================= */
+  // Format date to Indian locale format
   const formatDate = (date) => {
     if (!date) return "N/A";
     return new Date(date).toLocaleDateString("en-IN", {
@@ -204,6 +217,7 @@ export default function EventSlider({
   };
 
   /* ================= LOADING ================= */
+  // Show loading state while fetching events
   if (loading) {
     return (
       <section className="container-fluid mt-4 px-5">
@@ -214,6 +228,7 @@ export default function EventSlider({
   }
 
   /* ================= EMPTY ================= */
+  // Show empty state when no events available
   if (!loading && data.length === 0) {
     return (
       <section className="container-fluid mt-4 px-5">
@@ -223,10 +238,10 @@ export default function EventSlider({
     );
   }
 
-  /* ================= UI (UNCHANGED) ================= */
+  /* ================= UI RENDER ================= */
   return (
     <section className="container-fluid mt-4 px-5">
-      {/* HEADER */}
+      {/* SECTION HEADER */}
       <div className="d-flex justify-content-between align-items-center mb-2">
         <div>
           <h5 className="fw-bold mb-0 land-title">{title}</h5>
@@ -239,7 +254,7 @@ export default function EventSlider({
 
       <hr />
 
-      {/* NAV */}
+      {/* SLIDER NAVIGATION */}
       <div className="d-flex justify-content-end gap-4 mb-3">
         <button className="scroll-rounded-circle" onClick={slideLeft}>
           ❮
@@ -249,7 +264,7 @@ export default function EventSlider({
         </button>
       </div>
 
-      {/* SLIDER */}
+      {/* EVENT CARDS SLIDER */}
       <div
         className="d-flex gap-3 overflow-hidden"
         ref={sliderRef}
@@ -263,6 +278,7 @@ export default function EventSlider({
 
           return (
             <div key={event.identity} className="card event-card">
+              {/* EVENT BANNER IMAGE */}
               <img
                 src={event.bannerImages?.[0] || "/images/event.png"}
                 className="event-img"
@@ -270,16 +286,18 @@ export default function EventSlider({
                 onClick={() => handleClick(event.slug)}
               />
 
+              {/* EVENT DETAILS */}
               <div className="card-body p-3">
+                {/* TITLE, SAVE, LIKE */}
                 <div className="d-flex justify-content-between align-items-start mt-2">
                   <span className="fw-semibold card-titel">{event.title}</span>
 
-                  {/* SAVE */}
+                  {/* SAVE BUTTON */}
                   <span onClick={() => handleSave(event)}>
                     <SAVEICON active={isSaved} />
                   </span>
 
-                  {/* LIKE */}
+                  {/* LIKE BUTTON */}
                   <div
                     onClick={() => handleLike(event)}
                     className="text-center"
@@ -289,7 +307,9 @@ export default function EventSlider({
                   </div>
                 </div>
 
+                {/* EVENT METADATA */}
                 <div className="mt-2 event-details">
+                  {/* Location + Ticket Price */}
                   <div className="d-flex justify-content-between">
                     <span>
                       <span>
@@ -310,6 +330,7 @@ export default function EventSlider({
                     </span>
                   </div>
 
+                  {/* Date + Event Mode */}
                   <div className="mt-2 d-flex justify-content-between align-items-center">
                     <span>
                       {DATEICON} {formatDate(calendar?.startDate)}
@@ -322,6 +343,7 @@ export default function EventSlider({
                   </div>
                 </div>
 
+                {/* FOOTER - Views + Category */}
                 <div className="d-flex justify-content-between align-items-center mt-3">
                   <span className="view-badge">
                     {VIEW_ICON} {event.viewCount || 0}

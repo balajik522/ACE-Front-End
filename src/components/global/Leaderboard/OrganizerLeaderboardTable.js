@@ -2,9 +2,14 @@
 
 import styles from "./OrganizerLeaderboardTable.module.css";
 
+/**
+ * OrganizerLeaderboardTable - Displays ranked list of event organizers
+ * Shows organizer details with their event counts and view metrics
+ */
 export default function OrganizerLeaderboardTable({ data = [] }) {
   return (
     <section className={styles.container}>
+      {/* Section header */}
       <h3>List of Top Organizers</h3>
       <p>You don’t just host events; you shape experiences. Keep shining!</p>
 
@@ -16,10 +21,12 @@ export default function OrganizerLeaderboardTable({ data = [] }) {
         <span className={styles.rank}>Ranking</span>
       </div>
 
+      {/* Empty state */}
       {data.length === 0 && (
         <p className={styles.empty}>No organizers found</p>
       )}
 
+      {/* ORGANIZER ROWS */}
       {data.map((org, idx) => (
         <div
           key={org.identity}

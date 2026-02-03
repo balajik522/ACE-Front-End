@@ -6,11 +6,14 @@
   border-radius: 13.91px;
   border: 1.5px solid #e9e9e9;
 }
+
+/* Save button active state */
 .save-active svg {
   fill: #6a00ff; /* purple / blue */
   stroke: #6a00ff;
 }
 
+/* Save button inactive state */
 .save-inactive svg {
   fill: none;
   stroke: #999;
@@ -41,6 +44,8 @@
   text-overflow: ellipsis;
   font-family: var(--font-poppins), sans-serif;
 }
+
+/* Card title */
 .card-titel {
   font-family: "BL Melody", sans-serif;
   overflow: hidden;
@@ -48,6 +53,8 @@
   width: 200px;
   text-overflow: ellipsis;
 }
+
+/* Event details text */
 .event-details {
   font-size: 14px;
   font-style: normal;
@@ -75,6 +82,7 @@
   background: #22c55e;
 }
 
+/* Offline mode - red */
 .mode-text.offline {
   color: #dc2626;
 }
@@ -82,6 +90,7 @@
   background: #ef4444;
 }
 
+/* Hybrid mode - purple gradient */
 .mode-text.hybrid {
   color: #7c3aed;
 }
@@ -107,6 +116,8 @@
   border-radius: 18px;
   font-size: 12px;
 }
+
+/* Date time container */
 .event-datetime {
   font-size: 13px;
   color: #555;
@@ -115,24 +126,33 @@
   gap: 6px;
 }
 
+/* Date time row */
 .event-dt-row {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+/* Date time icon */
 .dt-icon svg {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
+/* Date time grid layout */
 .dt-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 50px;
   white-space: nowrap;
 }
+
+/* =========================
+   BUTTONS & CONTROLS
+========================= */
+
+/* See all button */
 .see-all-btn {
   cursor: pointer;
   background: none;
@@ -149,6 +169,8 @@
   border-radius: 61px;
   border: 1px solid #000;
 }
+
+/* See all button hover state */
 .see-all-btn:hover {
   background: #7b2cff;
   color: #fff;
@@ -159,6 +181,8 @@
   height: 44px;
   padding: 2.993px 15.96px;
 }
+
+/* Divider line */
 hr {
   height: 3px !important;
   background: black !important;
@@ -166,6 +190,8 @@ hr {
   background: #e0e0e0;
   margin: 20px 0;
 }
+
+/* Scroll navigation circle button */
 .scroll-rounded-circle {
   width: 44px;
   height: 44px;

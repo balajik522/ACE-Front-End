@@ -1,3 +1,12 @@
+/**
+ * Modal Module Styles
+ * Shared styles for modal components (ConfirmModal, TicketModal)
+ */
+
+/* ========================================
+   BACKDROP / OVERLAY
+   Full-screen dark overlay
+   ======================================== */
 .modalBackdrop {
   position: fixed;
   inset: 0;
@@ -7,9 +16,16 @@
   justify-content: center;
   z-index: 999999;
 }
+
+/* Required field indicator */
 .field span {
   color: red;
 }
+
+/* ========================================
+   MODAL CONTAINER
+   Main card with white background
+   ======================================== */
 .modal {
   background: #ffffff;
   width: 520px;
@@ -32,6 +48,7 @@
   margin-top: 15px;
 }
 
+/* Close button positioning */
 .closeBtn {
   position: absolute;
   right: 0;
@@ -57,7 +74,7 @@
 }
 
 .active {
-  background: #7b2cff; /* pink */
+  background: #7b2cff; /* Primary action state color */
   color: #fff;
   border-color: #7b2cff;
 }
@@ -82,6 +99,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Text input styling */
 .input {
   padding: 10px 12px;
   border-radius: 8px;
@@ -104,6 +122,7 @@
   margin-top: 22px;
 }
 
+/* Primary action button */
 .primaryBtn {
   background: #7b2cff;
   color: #fff;
@@ -114,6 +133,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Secondary/outline button */
 .outlineBtn {
   background: #fff;
   border: 1px solid #7b2cff;
@@ -123,3 +143,4 @@
   cursor: pointer;
   font-family: "BL Melody", sans-serif;
 }
+

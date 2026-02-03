@@ -1,3 +1,8 @@
+/* ============================================
+   Ticket List Modal Styles
+   ============================================ */
+
+/* Modal Backdrop - Fullscreen fixed overlay */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -7,6 +12,7 @@
   z-index: 9999;
 }
 
+/* Modal Container - White card for ticket list */
 .ticket-modal {
   background: #fff;
   width: 820px;
@@ -14,18 +20,21 @@
   padding: 24px;
 }
 
+/* Header Section - Title and close controls */
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Actions Bar - Add button alignment */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
   margin: 16px 0;
 }
 
+/* Add Button - Creates new ticket */
 .btn-add {
   background: #7f00ff;
   color: #fff;
@@ -34,11 +43,13 @@
   border: none;
 }
 
+/* Table Container - Wraps ticket rows */
 .ticket-table {
   border: 1px solid #eee;
   border-radius: 12px;
 }
 
+/* Table Row - Grid layout for columns */
 .ticket-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -46,21 +57,25 @@
   align-items: center;
 }
 
+/* Header Row - Column labels styling */
 .ticket-row.header {
   background: #f7f7f7;
   font-weight: 600;
 }
 
+/* Action Buttons - Edit/Delete in row */
 .actions button {
   margin-right: 8px;
 }
 
+/* Footer Section - Save button alignment */
 .modal-footer {
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
 }
 
+/* Save Button - Primary action style */
 .btn-save {
   background: #7f00ff;
   color: #fff;
@@ -68,3 +83,4 @@
   border-radius: 24px;
   border: none;
 }
+

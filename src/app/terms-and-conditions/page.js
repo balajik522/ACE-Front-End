@@ -1,10 +1,18 @@
+/**
+ * Terms and Conditions Page
+ * Displays platform terms, user responsibilities, and legal agreements
+ * Provides interactive section navigation for easy access to specific terms
+ */
+
 "use client";
 
 import { useState } from "react";
 import styles from "./terms-and-conditions.module.css";
 import Footer from "../../components/global/Footer/Footer";
 
+// Configuration for terms and conditions sections
 const SECTIONS = [
+  // Section 1: Introduction - Platform overview and acceptance of terms
   {
     id: "intro",
     label: "Introduction",
@@ -34,6 +42,7 @@ const SECTIONS = [
       </>
     ),
   },
+  // Section 2: Platform Purpose - Explains ACE's role as an intermediary
   {
     id: "purpose",
     label: "Platform Purpose",
@@ -62,6 +71,7 @@ const SECTIONS = [
       </>
     ),
   },
+  // Section 3: User Accounts - Account requirements and responsibilities
   {
     id: "accounts",
     label: "User Accounts",
@@ -94,6 +104,7 @@ const SECTIONS = [
       </>
     ),
   },
+  // Section 4: Events & Participation - Organizer and attendee guidelines
   {
     id: "events",
     label: "Events & Participation",
@@ -129,6 +140,7 @@ const SECTIONS = [
       </>
     ),
   },
+  // Section 5: Payments & Refunds - Financial terms and policies
   {
     id: "payments",
     label: "Payments & Refunds",
@@ -156,6 +168,7 @@ const SECTIONS = [
       </>
     ),
   },
+  // Section 6: Content & Disclaimers - Content ownership and platform disclaimers
   {
     id: "content",
     label: "Content & Disclaimers",
@@ -183,6 +196,7 @@ const SECTIONS = [
       </>
     ),
   },
+  // Section 7: Liability & Legal - Legal terms, limitations, and jurisdiction
   {
     id: "legal",
     label: "Liability & Legal",
@@ -218,13 +232,17 @@ const SECTIONS = [
   },
 ];
 
+// Main client component for Terms and Conditions page
 export default function TermsConditionsClient() {
+  // Tracks currently active section for navigation
   const [active, setActive] = useState("intro");
 
+  // Finds the active section content based on current state
   const activeSection = SECTIONS.find((s) => s.id === active);
 
   return (
     <>
+      {/* Page header with title and description */}
       <div className={styles.root}>
         {/* HEADER */}
         <div className={styles.header}>
@@ -261,7 +279,9 @@ export default function TermsConditionsClient() {
           </section>
         </div>
       </div>
+      {/* Footer component for consistent page layout */}
       <Footer />
     </>
   );
 }
+

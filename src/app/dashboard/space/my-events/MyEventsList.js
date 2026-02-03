@@ -28,10 +28,12 @@ export default function MyEventsList({ events = [], loading }) {
     );
   }
 
+  // Navigate to event details
   const handleClick = (event) => {
     router.push(`/dashboard/space/dashboard-chart/${event.slug}`);
   };
 
+  // Handle event deletion logic
   const handleDelete = () => {
     console.log("DELETE EVENT:", deleteId);
     setDeleteId(null);

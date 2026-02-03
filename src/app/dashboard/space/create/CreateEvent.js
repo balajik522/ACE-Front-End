@@ -71,6 +71,7 @@ const INITIAL_FORM_DATA = {
 export default function CreateEvent() {
   const { setLoading } = useLoading();
 
+  // State for current step and form data
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const [resetSignal, setResetSignal] = useState(0);
@@ -80,6 +81,7 @@ export default function CreateEvent() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   /* ================= INIT AUTH ================= */
+  // Check user login status on mount
   useEffect(() => {
     const ok = isUserLoggedIn();
     setLoggedIn(ok);
@@ -152,6 +154,7 @@ export default function CreateEvent() {
       const event = formData.event;
       const media = formData.media;
 
+      // Prepare FormData for API request
       const fd = new FormData();
 
       fd.append("title", event.title);
@@ -259,11 +262,13 @@ export default function CreateEvent() {
     }
   };
 
-  /* ================= UI (UNCHANGED) ================= */
+  /* ================= UI RENDER ================= */
   return (
     <div className={styles.wrapper}>
+      {/* STEPPER INDICATOR */}
       <Stepper step={step} />
 
+      {/* STEP 1 - ORGANIZER DETAILS */}
       {step === 1 && (
         <OrganizerDetails
           data={formData.organizer}
@@ -273,6 +278,7 @@ export default function CreateEvent() {
         />
       )}
 
+      {/* STEP 2 - EVENT DETAILS */}
       {step === 2 && (
         <EventDetails
           data={formData.event}
@@ -283,6 +289,7 @@ export default function CreateEvent() {
         />
       )}
 
+      {/* STEP 3 - MEDIA & TICKETS */}
       {step === 3 && (
         <MediaTickets
           data={formData.media}

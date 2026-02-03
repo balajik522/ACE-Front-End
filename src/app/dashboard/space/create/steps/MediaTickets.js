@@ -23,6 +23,10 @@ import { processImage } from "../../../../../lib/utils/imageProcessor";
 import { ticketSchema } from "../../../../../components/validation";
 import toast from "react-hot-toast";
 
+/* MediaTickets Component
+ * Handles media uploads (images/video), social links, perks, certifications
+ * and ticket management with pricing for events
+ */
 export default function MediaTickets({
   data,
   setData,
@@ -40,11 +44,16 @@ export default function MediaTickets({
 
   const [paymentLink, setPaymentLink] = useState(data?.paymentLink || "");
 
+  /* Dropdown options loaded from API */
   const [perksList, setPerksList] = useState([]);
   const [certList, setCertList] = useState([]);
   const [accommodationList, setAccommodationList] = useState([]);
+  
+  /* Modal visibility state */
   const [openTicketModal, setOpenTicketModal] = useState(false);
   const [openSuccessModal, setOpenSuccessModal] = useState(false);
+  
+  /* Ticket form state */
   const [ticketType, setTicketType] = useState("FREE");
   const [editingIndex, setEditingIndex] = useState(null);
   const [ticketForm, setTicketForm] = useState({
@@ -60,6 +69,7 @@ export default function MediaTickets({
   const fileInputRef = useRef(null);
   const [images, setImages] = useState([]);
 
+  /* Handle file selection - process and validate images */
   const handleFileSelect = async (e) => {
     const files = Array.from(e.target.files || []);
     let updatedImages = [...images];
@@ -87,10 +97,12 @@ export default function MediaTickets({
     e.target.value = "";
   };
 
+  /* Remove image from preview by index */
   const removeImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
   };
 
+  /* Reset local state when form reset signal is triggered */
   useEffect(() => {
     // reset local UI states
     setTickets([]);
@@ -164,6 +176,7 @@ export default function MediaTickets({
     setOpenTicketModal(true);
   };
 
+  /* Open ticket modal for editing existing ticket */
   const handleEditTicket = (ticket, index) => {
     setEditingIndex(index);
     setTicketForm(ticket);
@@ -171,6 +184,7 @@ export default function MediaTickets({
     setOpenTicketModal(true);
   };
 
+  /* Validate and save ticket (create or update) */
   const handleSaveTicket = async () => {
     try {
       await ticketSchema.validate(
@@ -187,10 +201,12 @@ export default function MediaTickets({
       };
 
       if (editingIndex !== null) {
+        // Update existing ticket
         const updated = [...tickets];
         updated[editingIndex] = payload;
         setTickets(updated);
       } else {
+        // Add new ticket
         setTickets([...tickets, payload]);
       }
 
@@ -212,12 +228,14 @@ export default function MediaTickets({
         <h3 className={styles.title}>Media & Links</h3>
 
         <div className={styles.grid2}>
+          {/* Image upload section */}
           <div className={styles.field}>
             <label>
               Files <span>*</span>
             </label>
 
             <div className={styles.uploadBox}>
+              {/* Hidden file input triggered by clicking the upload box */}
               <input
                 ref={fileInputRef}
                 type="file"
@@ -227,6 +245,7 @@ export default function MediaTickets({
                 onChange={handleFileSelect}
               />
 
+              {/* Upload trigger area */}
               <div
                 className={styles.fileUpload}
                 style={{ cursor: "pointer" }}
@@ -236,6 +255,7 @@ export default function MediaTickets({
                 <p>Choose file or drag here (up to 4 images)</p>
               </div>
 
+              {/* Image preview grid */}
               <div className={styles.previewRow}>
                 {images.length === 0 &&
                   [1, 2, 3, 4].map((i) => (
@@ -252,6 +272,7 @@ export default function MediaTickets({
                   >
                     <img src={URL.createObjectURL(img)} alt="preview" />
 
+                    {/* Remove image button */}
                     <span
                       onClick={() => removeImage(index)}
                       style={{
@@ -277,6 +298,7 @@ export default function MediaTickets({
               </div>
             </div>
 
+            {/* Video link input */}
             <div className={styles.iconInput}>
               <span className={styles.icon}>{VIDEOICON}</span>
               <input className={styles.input} placeholder="Event Video Link" />
@@ -287,6 +309,7 @@ export default function MediaTickets({
           <div className={styles.field}>
             <label>Social Media Links</label>
 
+            {/* WhatsApp channel link */}
             <div className={styles.iconInput}>
               <span className={styles.icon}>{WHATSAPP}</span>
               <input
@@ -295,16 +318,19 @@ export default function MediaTickets({
               />
             </div>
 
+            {/* Instagram link */}
             <div className={styles.iconInput}>
               <span className={styles.icon}>{INSTAGRAMICON}</span>
               <input className={styles.input} placeholder="Instagram Link" />
             </div>
 
+            {/* LinkedIn link */}
             <div className={styles.iconInput}>
               <span className={styles.icon}>{LINKEDINICON}</span>
               <input className={styles.input} placeholder="LinkedIn Link" />
             </div>
 
+            {/* Website link */}
             <div className={styles.iconInput}>
               <span className={styles.icon}>{WEBSITEICON}</span>
               <input className={styles.input} placeholder="Website Link" />
@@ -384,6 +410,7 @@ export default function MediaTickets({
       <div className={styles.card}>
         <h3 className={styles.title}>Tickets & Payment</h3>
 
+        {/* Payment link input */}
         <div className={styles.field}>
           <label>
             Payment Link <span>*</span>
@@ -396,6 +423,7 @@ export default function MediaTickets({
           />
         </div>
 
+        {/* Ticket list header with add button */}
         <div className={styles.ticketHeader}>
           <label>
             Tickets <span>*</span>
@@ -405,12 +433,14 @@ export default function MediaTickets({
           </button>
         </div>
 
+        {/* Empty state message */}
         {tickets.length === 0 && (
           <p className={styles.empty}>
             Ticket is empty! Click to create ticket
           </p>
         )}
 
+        {/* Tickets table */}
         {tickets.length > 0 && (
           <table className={styles.table}>
             <tbody>
@@ -452,6 +482,8 @@ export default function MediaTickets({
           Next
         </button>
       </div>
+      
+      {/* Ticket creation/editing modal */}
       <TicketModal
         open={openTicketModal}
         onClose={() => setOpenTicketModal(false)}
@@ -461,6 +493,8 @@ export default function MediaTickets({
         setTicketType={setTicketType}
         onSave={handleSaveTicket}
       />
+      
+      {/* Success confirmation modal */}
       <ConfirmModal
         open={openSuccessModal}
         image="/images/logo.png"

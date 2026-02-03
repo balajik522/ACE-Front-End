@@ -1,6 +1,10 @@
 "use client";
 import "./WhyChoose.css";
 
+/**
+ * WhyChoose Functional Component
+ * Showcases platform advantages with visual cards
+ */
 export default function WhyChoose() {
   return (
     <section className="why-ace container-xl">
@@ -62,3 +66,4 @@ export default function WhyChoose() {
     </section>
   );
 }
+

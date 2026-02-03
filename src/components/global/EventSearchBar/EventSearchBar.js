@@ -2,6 +2,10 @@
 
 import styles from "./EventSearchBar.module.css";
 
+/**
+ * EventSearchBar - Search filter component for event discovery
+ * Allows users to filter events by type, location, and date
+ */
 export default function EventSearchBar({
   whatIcon,
   whereIcon,
@@ -13,6 +17,7 @@ export default function EventSearchBar({
   return (
     <div className={styles.wrapper}>
       <div className={styles.card}>
+        {/* Search filter row - clickable columns for each filter */}
         <div className={styles.row}>
           <div className={styles.col} onClick={onWhatClick}>
             <div className={styles.icon}>{whatIcon}</div>

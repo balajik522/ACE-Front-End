@@ -33,6 +33,7 @@ import {
 /* GLOBAL LOADING */
 import { useLoading } from "../../../context/LoadingContext"; 
 
+// OTP verification client component
 export default function EnterOtpClient() {
   const router = useRouter();
   const params = useSearchParams();
@@ -40,10 +41,12 @@ export default function EnterOtpClient() {
 
   const { setLoading } = useLoading();
 
+  // State management
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [resendLoading, setResendLoading] = useState(false);
 
+  // OTP input refs for auto-focus
   const inputs = [
     useRef(null),
     useRef(null),
@@ -51,11 +54,13 @@ export default function EnterOtpClient() {
     useRef(null),
   ];
 
+  // Retrieve stored email on mount
   useEffect(() => {
     const storedEmail = getEmail();
     if (storedEmail) setEmail(storedEmail);
   }, []);
 
+  // UI configuration based on role
   const config = {
     user: {
       image: "/images/auth-forgot.png",
@@ -69,6 +74,7 @@ export default function EnterOtpClient() {
 
   const ui = config[role];
 
+  // Handle OTP input changes
   function onChange(index, value) {
     if (!/^\d*$/.test(value)) return;
 
@@ -86,6 +92,7 @@ export default function EnterOtpClient() {
     e.preventDefault();
     const code = otp.join("");
 
+    // Validate OTP format
     try {
       await otpSchema.validate({ otp: code }, { abortEarly: false });
     } catch (err) {
@@ -95,6 +102,7 @@ export default function EnterOtpClient() {
     try {
       setLoading(true); 
 
+      // Verify OTP with server
       const res = await verifyOtpApi({ email, otp: code });
 
       if (res?.status) {

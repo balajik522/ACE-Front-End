@@ -32,6 +32,7 @@ import { saveEmail } from "../../../lib/auth";
 /* GLOBAL LOADING */
 import { useLoading } from "../../../context/LoadingContext"; 
 
+// Forgot password client component
 export default function ForgotPasswordClient() {
   const router = useRouter();
   const params = useSearchParams();
@@ -39,8 +40,10 @@ export default function ForgotPasswordClient() {
 
   const { setLoading } = useLoading(); 
 
+  // Email input state
   const [email, setEmail] = useState("");
 
+  // UI configuration based on role
   const config = {
     user: {
       image: "/images/auth-forgot.png",
@@ -62,9 +65,11 @@ export default function ForgotPasswordClient() {
 
   const ui = config[role];
 
+  // Handle form submission
   async function onSubmit(e) {
     e.preventDefault();
 
+    // Validate email format
     try {
       await ui.schema.validate({ email }, { abortEarly: false });
     } catch (err) {
@@ -74,6 +79,7 @@ export default function ForgotPasswordClient() {
     try {
       setLoading(true);
 
+      // Request OTP for password reset
       await forgotApi({ email });
 
       saveEmail(email);

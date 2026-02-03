@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { getUserProfileApi } from "../../../lib/api/user.api";
 import { getOrganizationProfileApi } from "../../../lib/api/organizer.api";
 
-// 🔐 SESSION AUTH (NO REDUX)
+// Session-based authentication (no Redux)
 import { getAuthFromSession, isUserLoggedIn } from "../../../lib/auth";
 
 import "./Navbar.css";
@@ -15,10 +15,15 @@ import {
   LOCATION_ICON,
 } from "../../../const-value/config-icons/page";
 
+/**
+ * Navbar - Main navigation header component
+ * Displays logo, search, location, create event button, and user profile
+ */
 export default function Navbar() {
   const router = useRouter();
 
   /* ================= SESSION AUTH STATE ================= */
+  // Track login status and user authentication data
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [auth, setAuth] = useState(null);
 
@@ -28,6 +33,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   /* ================= INITIAL MOUNT ================= */
+  // Check authentication status on component mount
   useEffect(() => {
     setMounted(true);
 
@@ -38,13 +44,17 @@ export default function Navbar() {
       const sessionAuth = getAuthFromSession();
       setAuth(sessionAuth);
 
+      // Get first letter of email for avatar fallback
       if (sessionAuth?.email) {
         setInitial(sessionAuth.email.charAt(0).toUpperCase());
       }
     }
   }, []);
 
-  /* ================= LOAD PROFILE IMAGE ================= */
+  /* =========================================
+   LOAD PROFILE IMAGE
+   Fetches and displays user/organizer profile image
+   ========================================= */
   useEffect(() => {
     async function loadProfile() {
       if (!isLoggedIn || !auth?.identity || !auth?.type) return;
@@ -53,12 +63,15 @@ export default function Navbar() {
         let res;
 
         if (auth.type === "org") {
+          // Load organization profile
           res = await getOrganizationProfileApi(auth.identity);
         } else {
+          // Load user profile
           res = await getUserProfileApi(auth.identity);
         }
 
         if (res?.status && res.data) {
+          // Extract image from various possible fields
           const image =
             res.data.profileImage ||
             res.data.logo ||
@@ -70,16 +83,19 @@ export default function Navbar() {
           }
         }
       } catch {
-        // silent fail (navbar shouldn't break app)
+        // Handle errors gracefully - suppress errors to prevent navbar from breaking
       }
     }
 
     loadProfile();
   }, [isLoggedIn, auth]);
 
+  // Prevent hydration mismatch
   if (!mounted) return null;
 
   /* ================= HANDLERS ================= */
+
+  // Navigate to event creation or login based on auth status
   const handleCreateEventClick = () => {
     // not logged in
     if (!isLoggedIn) {
@@ -113,10 +129,10 @@ export default function Navbar() {
     router.push("/dashboard");
   };
 
-  /* ================= UI (UNCHANGED) ================= */
+  /* ================= UI RENDER ================= */
   return (
     <nav className="nav-container">
-      {/* LEFT */}
+      {/* LEFT - LOGO + EXPLORE BUTTON */}
       <div className="nav-left">
         <img
           src="/images/logo.png"
@@ -127,7 +143,7 @@ export default function Navbar() {
         <button className="nav-explore">Explore {EXPLORE_ICON}</button>
       </div>
 
-      {/* CENTER */}
+      {/* CENTER - SEARCH + ACTIONS */}
       <div className="nav-center">
         <div className="nav-search-box">
           <input
@@ -150,7 +166,7 @@ export default function Navbar() {
         )}
       </div>
 
-      {/* RIGHT */}
+      {/* RIGHT - PROFILE AVATAR */}
       {isLoggedIn && (
         <div className={`nav-right ${menuOpen ? "open" : ""}`}>
           <button className="nav-avatar-btn" onClick={handleProfileClick}>
@@ -168,7 +184,7 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* HAMBURGER */}
+      {/* HAMBURGER MENU TOGGLE */}
       <button
         className={`nav-hamburger ${menuOpen ? "is-open" : ""}`}
         onClick={() => setMenuOpen(!menuOpen)}

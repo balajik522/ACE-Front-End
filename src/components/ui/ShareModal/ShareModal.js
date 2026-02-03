@@ -1,8 +1,15 @@
+/**
+ * ShareModal Component
+ * Social sharing modal with platform-specific share functionality
+ */
+
 "use client";
+
 import { createPortal } from "react-dom";
 import "./ShareModal.css";
 import toast from "react-hot-toast";
 
+// Social media icons from config
 import {
   WHATSAPPICON,
   XICON,
@@ -11,9 +18,13 @@ import {
   YOUTUBEICON,
 } from "../../../const-value/config-icons/page";
 
+/**
+ * ShareModal Functional Component
+ */
 export default function ShareModal({ open, onClose, title }) {
   if (!open) return null;
 
+  // Get current page URL for sharing
   const shareUrl =
     typeof window !== "undefined" ? window.location.href : "";
 
@@ -24,6 +35,9 @@ export default function ShareModal({ open, onClose, title }) {
   const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
   const YOUTUBE_URL = process.env.NEXT_PUBLIC_YOUTUBE_URL;
 
+  /**
+   * Handles share action for different platforms
+   */
   const handleShare = (type) => {
     if (!shareUrl) return;
 
@@ -79,6 +93,7 @@ export default function ShareModal({ open, onClose, title }) {
     onClose();
   };
 
+  // Render modal using portal to document body
   return createPortal(
     <div className="share-overlay" onClick={onClose}>
       <div className="share-modal" onClick={(e) => e.stopPropagation()}>
@@ -90,26 +105,32 @@ export default function ShareModal({ open, onClose, title }) {
 
         {/* SOCIAL OPTIONS */}
         <div className="share-options">
+          {/* WhatsApp */}
           <button onClick={() => handleShare("whatsapp")}>
             {WHATSAPPICON} WhatsApp
           </button>
 
+          {/* X (Twitter) */}
           <button onClick={() => handleShare("x")}>
             {XICON} X (Twitter)
           </button>
 
+          {/* LinkedIn */}
           <button onClick={() => handleShare("linkedin")}>
             {LINKEDINICON} LinkedIn
           </button>
 
+          {/* Instagram */}
           <button onClick={() => handleShare("instagram")}>
             {INSTAGRAMICON} Instagram
           </button>
 
+          {/* YouTube */}
           <button onClick={() => handleShare("youtube")}>
             {YOUTUBEICON} YouTube
           </button>
 
+          {/* Copy Link */}
           <button onClick={() => handleShare("copy")}>
             🔗 Copy Event Link
           </button>
@@ -119,3 +140,4 @@ export default function ShareModal({ open, onClose, title }) {
     document.body
   );
 }
+

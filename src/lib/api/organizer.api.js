@@ -6,15 +6,19 @@ import { isUserLoggedIn } from "../auth";
 
 /* ================= ORGANIZATION ================= */
 
+// GET ALL ORGANIZATIONS
 export const getAllOrganizationsApi = () =>
   handleApi(apiPrivate.get(API_ENDPOINTS.ORGANIZER.ALL));
 
+// GET ORGANIZATION PROFILE
 export const getOrganizationProfileApi = (orgId) =>
   handleApi(apiPrivate.get(API_ENDPOINTS.ORGANIZER.PROFILE(orgId)));
 
+// UPDATE ORGANIZATION PROFILE
 export const updateOrganizationProfileApi = (orgId, data) =>
   handleApi(apiPrivate.put(API_ENDPOINTS.ORGANIZER.UPDATE(orgId), data));
 
+// DELETE ORGANIZATION
 export const deleteOrganizationApi = (orgId) =>
   handleApi(apiPrivate.delete(API_ENDPOINTS.ORGANIZER.DELETE(orgId)));
 

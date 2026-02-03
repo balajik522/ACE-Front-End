@@ -1,3 +1,8 @@
+/* ============================================
+   Social Media Modal Styles
+   ============================================ */
+
+/* Modal Overlay - Fullscreen fixed backdrop */
 .child-overlay {
   position: fixed;
   inset: 0;
@@ -8,6 +13,7 @@
   justify-content: center;
 }
 
+/* Modal Container - White card with rounded corners */
 .child-modal {
   background: #fff;
   border-radius: 16px;
@@ -15,6 +21,7 @@
   padding: 24px;
 }
 
+/* Header Section - Back button and title alignment */
 .modal-header {
   display: flex;
   align-items: center;
@@ -22,6 +29,7 @@
   margin-bottom: 24px;
 }
 
+/* Back Button - Navigation control to return */
 .back-btn {
   border: none;
   background: none;
@@ -29,12 +37,14 @@
   cursor: pointer;
 }
 
+/* Social Form - Vertical layout for inputs */
 .social-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
+/* Input Wrapper - Icon and field container */
 .input-wrap {
   display: flex;
   align-items: center;
@@ -50,6 +60,7 @@
   font-size: 14px;
 }
 
+/* Footer Section - Action buttons alignment */
 .modal-footer {
   display: flex;
   justify-content: end;
@@ -57,6 +68,7 @@
   margin-top: 24px;
 }
 
+/* Outline Button - Secondary action style */
 .outline-btn {
   border: 1px solid #7a12ff;
   background: #fff;
@@ -65,6 +77,7 @@
   border-radius: 24px;
 }
 
+/* Primary Button - Main action style */
 .primary-btn {
   background: #7a12ff;
   color: #fff;
@@ -72,3 +85,4 @@
   border-radius: 24px;
   border: none;
 }
+

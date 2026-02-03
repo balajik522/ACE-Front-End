@@ -11,12 +11,14 @@ export default function DashboardChart({ event, onBack }) {
   // 🔐 SAFETY (extra)
   if (!event) return null;
 
+  // Extract statistics from the event object
   const stats = {
     click: event?.viewCount ?? 0,
     view: event?.viewCount ?? 0,
     like: event?.likeCount ?? 0,
   };
 
+  // Memoize chart data calculation based on selected metric
   const chartData = useMemo(() => {
     const total =
       selected === "Click"
@@ -37,6 +39,7 @@ export default function DashboardChart({ event, onBack }) {
     );
   }, [selected, stats]);
 
+  // Generate SVG path for the chart visualization
   const generatePath = (data) => {
     const stepX = 100 / (data.length - 1);
     let d = `M0,${40 - data[0] / 2}`;

@@ -3,6 +3,11 @@
 import { createContext, useContext, useState } from "react";
 import GlobalLoader from "../components/global/GlobalLoader/GlobalLoader";
 
+// ============================================
+// LOADING CONTEXT
+// Provides global loading state management
+// ============================================
+
 const LoadingContext = createContext();
 
 export function LoadingProvider({ children }) {
@@ -16,4 +21,5 @@ export function LoadingProvider({ children }) {
   );
 }
 
+// Custom hook to access loading context
 export const useLoading = () => useContext(LoadingContext);

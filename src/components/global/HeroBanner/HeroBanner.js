@@ -2,11 +2,17 @@
 
 import styles from "./HeroBanner.module.css";
 
+/**
+ * HeroBanner - Animated title banner component
+ * Displays animated text with color cycling effect
+ */
 export default function HeroBanner({ text }) {
+  // Split text into words for animation
   const words = text.split(" ");
 
   return (
     <>
+      {/* Animated title with staggered word colors */}
       <h1 className={`${styles.title} ${styles.center}`}>
         {words.map((word, i) => (
           <span
@@ -19,6 +25,7 @@ export default function HeroBanner({ text }) {
         ))}
       </h1>
 
+      {/* Subtitle description */}
       <p className={styles.subtitle}>
         Discover events that match your vibe — anytime, anywhere.
       </p>

@@ -1,3 +1,8 @@
+// ============================================
+// CONFIG MESSAGES
+// UI labels, titles, messages, and form text
+// ============================================
+
 // META TITEL
 
 export const METADATA_TITEL = "AllCollegeEvent"

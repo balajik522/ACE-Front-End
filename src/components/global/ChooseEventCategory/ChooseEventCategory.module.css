@@ -101,9 +101,10 @@
   font-family: "BL Melody", sans-serif;
 }
 
-/* ======================================================
-   ⭐ EXPLORE CARD ONLY (SPECIAL BEHAVIOUR)
-====================================================== */
+   /* ======================================
+   EXPLORE CARD SPECIAL STYLING
+   Unique hover animation behavior
+   ====================================== */
 
 .explore {
   background: #e3d8ff;

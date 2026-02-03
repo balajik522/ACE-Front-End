@@ -27,7 +27,9 @@ import {
   clearAuthSession,
 } from "../../../../lib/auth";
 
+// Delete profile client component
 export default function DeleteProfilePage() {
+  // Modal and deletion state
   const [open, setOpen] = useState(false);
   const [deleted, setDeleted] = useState(false);
 
@@ -81,25 +83,30 @@ export default function DeleteProfilePage() {
     }
   };
 
-  /* ================= UI (UNCHANGED) ================= */
+  /* ================= UI RENDER ================= */
   return (
     <div className={styles.wrapper}>
+      {/* ================= DELETE CONFIRMATION ================= */}
       {!deleted && (
         <div className={styles.confirmBox}>
+          {/* ICON */}
           <img
             src="/images/deleteprofileimage.png"
             alt={IMAGE_ALT}
             className={styles.icon}
           />
 
+          {/* TITLE */}
           <h2>{MSG_DELETE_ACCOUNT}</h2>
 
+          {/* DESCRIPTION */}
           <p>
             {SUB_TITLE_DELETE_ACCOUNT}
             <br />
             {SUB_TITLE_DELETE_ACCOUNT_SUB_TEXT}
           </p>
 
+          {/* ACTION BUTTONS */}
           <div className={styles.btnRow}>
             <button
               className={styles.cancelBtn}
@@ -118,6 +125,7 @@ export default function DeleteProfilePage() {
         </div>
       )}
 
+      {/* ================= DELETE CONFIRMATION MODAL ================= */}
       <DeleteConfirmModal
         open={open}
         onClose={() => setOpen(false)}
@@ -125,6 +133,7 @@ export default function DeleteProfilePage() {
         userEmail={email}
       />
 
+      {/* ================= SUCCESS STATE ================= */}
       {deleted && (
         <div className={styles.successBox}>
           {MSG_DELETED_YOUR_ACCOUNT}
@@ -133,3 +142,4 @@ export default function DeleteProfilePage() {
     </div>
   );
 }
+

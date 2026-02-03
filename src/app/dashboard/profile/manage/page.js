@@ -17,16 +17,19 @@ import {
 
 /*existing confirm modal */
 
-/* example API (unga real API replace pannunga) */
+/* Demo API only. Replace with the official API */
 // import { updateSocialLinksApi } from "../../../../lib/api/organizer.api";
 import toast from "react-hot-toast";
 import ConfirmModal from "../../../../components/ui/Modal/ConfirmModal";
 
+// Organization manage profile page
 export default function ManagePage() {
+  // View/Edit mode state
   const [mode, setMode] = useState("view");
   const [coverImage, setCoverImage] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
 
+  // Social links state
   const [socialLinks, setSocialLinks] = useState({
     linkedin: "https://www.linkedin.com",
     instagram: "https://www.instagram.com",
@@ -142,7 +145,7 @@ export default function ManagePage() {
               Cancel
             </button>
 
-            {/*ONLY CHANGE HERE */}
+            {/* Action button for saving changes */}
             <button
               className={styles.saveBtn}
               onClick={() => setShowConfirm(true)}
@@ -170,3 +173,4 @@ export default function ManagePage() {
     </div>
   );
 }
+

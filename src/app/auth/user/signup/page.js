@@ -35,13 +35,16 @@ import {
 
 import { useLoading } from "../../../../context/LoadingContext"; 
 
+// User signup page component
 export default function UserSignupPage() {
   const router = useRouter();
   const { setLoading } = useLoading(); 
 
+  // Password visibility toggles
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
+  // Form state management
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -50,6 +53,7 @@ export default function UserSignupPage() {
     type: ROLE_USER,
   });
 
+  // Handle form submission
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -68,6 +72,7 @@ export default function UserSignupPage() {
       return toast.error(err.errors[0]);
     }
 
+    // Prepare signup payload
     const payload = {
       name: form.name,
       email: form.email,
@@ -80,6 +85,7 @@ export default function UserSignupPage() {
     try {
       setLoading(true); 
 
+      // Register new user
       const res = await signupApi(payload);
 
       if (!res?.status) {
@@ -96,6 +102,7 @@ export default function UserSignupPage() {
     }
   };
 
+  // Switch to organizer signup
   const handleCreateEvent = () => {
     try {
       setLoading(true); 

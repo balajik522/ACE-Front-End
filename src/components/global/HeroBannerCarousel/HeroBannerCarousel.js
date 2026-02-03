@@ -3,11 +3,16 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./HeroBannerCarousel.module.css";
 
+/**
+ * HeroBannerCarousel - 3D carousel for hero banner images
+ * Displays images in a rotating carousel with 3D positioning effects
+ */
 export default function HeroBannerCarousel({ images = [], interval = 4500 }) {
   const n = images.length;
   const [centerIdx, setCenterIdx] = useState(0);
   const timerRef = useRef(null);
 
+  // Auto-rotate carousel
   useEffect(() => {
     if (!n) return;
 
@@ -18,6 +23,7 @@ export default function HeroBannerCarousel({ images = [], interval = 4500 }) {
     return () => clearInterval(timerRef.current);
   }, [n, interval]);
 
+  // Calculate position class based on index relative to center
   const getPosClass = (imgIdx) => {
     if (n === 1) return styles.posCenter;
 
@@ -37,6 +43,7 @@ export default function HeroBannerCarousel({ images = [], interval = 4500 }) {
 
   return (
     <div className={styles.carouselRoot}>
+      {/* Cards stage - carousel container */}
       <div className={styles.cardsStage}>
         {images.map((src, idx) => (
           <div

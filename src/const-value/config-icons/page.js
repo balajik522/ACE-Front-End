@@ -1,3 +1,10 @@
+// ============================================
+// CONFIG ICONS
+// SVG icon components for UI elements
+// ============================================
+
+// Location & Map Icons
+// --------------------
 export const LOCATION_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -116,8 +123,8 @@ export const SAVEICON = ({ active = false }) => (
   >
     <path
       d="M6 2C4.89543 2 4 2.89543 4 4V22C4 22.3795 4.214 22.725 4.553 22.894C4.892 23.063 5.298 23.026 5.6 22.8L12 18L18.4 22.8C18.702 23.026 19.108 23.063 19.447 22.894C19.786 22.725 20 22.3795 20 22V4C20 2.89543 19.1046 2 18 2H6Z"
-      fill={active ? "#6A00FF" : "none"}     // active → purple fill
-      stroke={active ? "#6A00FF" : "#3D3D3D"} // inactive → grey outline
+      fill={active ? "#6A00FF" : "none"}     // Active state: purple fill
+      stroke={active ? "#6A00FF" : "#3D3D3D"} // Inactive state: grey outline
       strokeWidth="1.8"
       strokeLinejoin="round"
     />
@@ -256,7 +263,7 @@ export const LIKE_ICON = ({ active = false }) => (
   >
     <path
       d="M7.17317 2.51536C6.91804 2.51536 6.65212 2.53692 6.37903 2.58363C2.68145 3.20169 2.51975 5.83563 2.51975 7.51014C2.51975 9.18465 3.54028 13.8848 12.6135 19.2892C21.6868 13.8848 22.7073 9.18465 22.7073 7.51014C22.7073 5.83563 22.5456 3.1981 18.848 2.58363C18.5749 2.53692 18.309 2.51536 18.0539 2.51536C15.2798 2.51536 13.537 5.01994 12.8938 6.14826C12.768 6.36745 12.4554 6.36745 12.3332 6.14826C11.69 5.01994 9.94725 2.51536 7.17317 2.51536ZM7.17317 0C9.43699 0 11.2696 1.07801 12.6135 2.39678C13.961 1.07801 15.7901 0 18.0539 0C18.4528 0 18.8588 0.0323399 19.2613 0.100614C22.2833 0.603686 23.7171 2.20992 24.3854 3.4676C25.1221 4.85464 25.2227 6.2884 25.2227 7.51014C25.2227 9.67335 24.1195 15.3617 13.8999 21.4524L12.7788 22.1208C12.6746 22.1819 12.5488 22.1819 12.4446 22.1208L11.3235 21.4524C1.10396 15.3652 0.000795364 9.67335 0.000795364 7.51014C0.000795364 6.29199 0.101416 4.85823 0.838057 3.4676C1.50642 2.20992 2.94018 0.603686 5.9622 0.100614C6.36466 0.0323399 6.77071 0 7.16957 0H7.17317Z"
-      fill={active ? "#E0245E" : "#3D3D3D"} // ❤️ red / grey
+      fill={active ? "#E0245E" : "#3D3D3D"} // Active state: red fill / Inactive state: grey
     />
   </svg>
 );
@@ -386,6 +393,8 @@ export const PAGEMOVEICON = (
   </svg>
 );
 
+// Date & Time Icons
+// -----------------
 export const DATEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -445,6 +454,8 @@ export const TIMEICON = (
   </svg>
 );
 
+// Social Media Icons
+// ------------------
 export const SHAREICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -506,6 +517,8 @@ export const SHAREICON = (
   </svg>
 );
 
+// Contact Icons
+// ------------
 export const PHONEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -570,6 +583,8 @@ export const VIEW_ICON = (
   </svg>
 );
 
+// Communication Icons
+// -------------------
 export const EMAILICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -627,6 +642,8 @@ export const WHATSAPP = (
   </svg>
 );
 
+// Action Icons
+// -----------
 export const DELETICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -664,6 +681,8 @@ export const ADDICON = (
   </svg>
 );
 
+// Social Platform Icons
+// ---------------------
 export const WHATSAPPICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -771,6 +790,8 @@ export const FACEBOOKICON = (
     </defs>
   </svg>
 );
+// Footer Social Media Icons
+// -------------------------
 export const FOOTER_FACEBOOK = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1188,6 +1209,8 @@ export const PASSWORDHIDEICON = (
     />
   </svg>
 );
+// Category Icons
+// -------------
 export const UNIVERSITYICONS = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1311,6 +1334,8 @@ export const NGOICON = (
     />
   </svg>
 );
+// Interactive Icons (State-aware)
+// -------------------------------
 export const HEART_ICON = ({ active = false, size = 22 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1358,3 +1383,7 @@ export const TECHONEICON = (
     </defs>
   </svg>
 );
+
+// ============================================
+// End of Config Icons
+// ============================================

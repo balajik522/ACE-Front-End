@@ -10,7 +10,7 @@
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
   transition: transform 0.25s ease;
 }
-/* ===== UPCOMING GRID (same as screenshot) ===== */
+/* ===== UPCOMING GRID ===== */
 .upcoming-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

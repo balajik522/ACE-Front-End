@@ -1,3 +1,4 @@
+/* Card container - main wrapper for organizer information form */
 .card {
   background: #f2f2f2;
   border-radius: 12px;
@@ -6,6 +7,7 @@
   border: 1px solid #eee;
 }
 
+/* Section title - bold heading for hosting information */
 .cardTitle {
   font-size: 18px;
   font-weight: 700;
@@ -13,12 +15,14 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Organization block - groups fields for each organization entry */
 .orgBlock {
   border-bottom: 1px solid #eee;
   padding-bottom: 24px;
   margin-bottom: 24px;
 }
 
+/* Organization header - flex row with title and delete action */
 .orgHeader {
   display: flex;
   justify-content: space-between;
@@ -27,6 +31,7 @@
    font-family: var(--font-poppins), sans-serif;
 }
 
+/* Delete button - outlined purple button for removing organization */
 .deleteBtn {
   background: #fff;
   border: 1px solid #7f00ff;
@@ -36,12 +41,14 @@
   cursor: pointer;
 }
 
+/* Form field - vertical flex layout for label and input */
 .field {
   display: flex;
   flex-direction: column;
   margin-bottom: 14px;
 }
 
+/* Field label - bold text with required asterisk support */
 .field label {
   font-size: 15px;
   font-weight: 500;
@@ -49,10 +56,12 @@
   color: #000;
 }
 
+/* Required field indicator - red asterisk */
 .field span {
   color: red;
 }
 
+/* Text input - fixed height with consistent border styling */
 .input {
   height: 44px;
   border-radius: 10px;
@@ -61,17 +70,20 @@
   margin-top: 6px;
 }
 
+/* Two-column grid - side-by-side layout for form fields */
 .grid2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
+/* Add button wrapper - right-aligned container */
 .addWrap {
   display: flex;
   justify-content: flex-end;
 }
 
+/* Add collaborator button - filled purple button */
 .addBtn {
   background: #7f00ff;
   color: #fff;
@@ -81,11 +93,13 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Action end - right-aligned footer container */
 .actionEnd {
   display: flex;
   justify-content: flex-end;
 }
 
+/* Next button - primary action button for form progression */
 .nextBtn {
   background: #7f00ff;
   color: #fff;

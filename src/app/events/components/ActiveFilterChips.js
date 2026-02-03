@@ -2,6 +2,10 @@
 
 import { IoClose } from "react-icons/io5";
 
+/* ActiveFilterChips Component
+ * Displays selected filter options as removable chips
+ * Supports event types, modes, departments, perks, certifications, date and price
+ */
 export default function ActiveFilterChips({
   filters,
   onRemove,
@@ -98,6 +102,7 @@ export default function ActiveFilterChips({
     });
   }
 
+  /* Render nothing if no filters selected */
   if (!chips.length) return null;
 
   return (

@@ -3,6 +3,7 @@ import Footer from "../../components/global/Footer/Footer";
 import { FACEBOOKICON, INSTAGRAMICON, LINKEDINICON, WHATSAPP } from "../../const-value/config-icons/page";
 import styles from "./contact.module.css";
 
+// Contact page component
 export default function ContactPage() {
   return (
     <>
@@ -55,3 +56,4 @@ export default function ContactPage() {
     </>
   );
 }
+

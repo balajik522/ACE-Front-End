@@ -2,6 +2,10 @@
 import { VIDEOICON } from "../../../const-value/config-icons/page";
 import "./ExploreHero.css";
 
+/**
+ * ExploreHero - Hero section for the explore events page
+ * Displays title, description, CTA button, and event category images
+ */
 export default function ExploreHero() {
 
   return (
@@ -11,16 +15,19 @@ export default function ExploreHero() {
         <div className="col-lg-6">
           {/* <div className="ace-date">09–29, Nov 2025</div> */}
 
+          {/* Section title */}
           <h1 className="ace-title">
             ALL <br />
             EVENTS
           </h1>
 
+          {/* Description */}
           <p className="ace-desc">
             From cultural fests to tech challenges, our events are designed to
             engage, empower, and elevate every participant.
           </p>
 
+          {/* CTA Button */}
           <div className="d-flex gap-3 mt-4 flex-wrap">
             <button className="btn ace-primary">
               {VIDEOICON} Watch Our Journey

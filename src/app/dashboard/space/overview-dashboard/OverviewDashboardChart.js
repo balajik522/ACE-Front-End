@@ -10,12 +10,14 @@ export default function OverviewDashboardChart({ events }) {
   const [selected, setSelected] = useState("Engagement");
 
   /* ================= FILTER EVENTS ================= */
+  // Filter events based on the selected event ID
   const selectedEvents =
     selectedEventId === "ALL"
       ? events
       : events.filter((e) => e.identity === selectedEventId);
 
   /* ================= STATS ================= */
+  // Calculate aggregated statistics for the selected events
   const stats = useMemo(() => {
     let view = 0;
     let like = 0;
@@ -34,6 +36,7 @@ export default function OverviewDashboardChart({ events }) {
   }, [selectedEvents]);
 
   /* ================= CHART DATA (SAME CURVE LOGIC) ================= */
+  // Generate data points for the chart based on selected metric
   const chartData = useMemo(() => {
     let total = 0;
 
@@ -53,6 +56,7 @@ export default function OverviewDashboardChart({ events }) {
   }, [selected, stats]);
 
   /* ================= SVG PATH ================= */
+  // Create SVG path string from data points
   const generatePath = (data) => {
     const stepX = 100 / (data.length - 1);
     let d = `M0,${40 - data[0] / 2}`;
@@ -113,7 +117,7 @@ export default function OverviewDashboardChart({ events }) {
         {/* <div className={styles.calendar}>{DATEICON}</div> */}
       </div>
 
-      {/* STATS CARDS (SAME UI) */}
+      {/* STATS CARDS */}
       <div className={styles.cards}>
         <div className={`${styles.card} ${styles.click}`}>
           <div className={styles.cardTop}>

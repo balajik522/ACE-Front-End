@@ -1,3 +1,8 @@
+/* ============================================
+   Ticket Edit Modal Styles
+   ============================================ */
+
+/* Modal Overlay - Fullscreen fixed backdrop */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -9,6 +14,7 @@
   z-index: 9999;
 }
 
+/* Modal Container - White card for editing */
 .ticket-edit-modal {
   width: 520px;
   background: #fff;
@@ -16,18 +22,21 @@
   padding: 24px;
 }
 
+/* Header Section - Title and close controls */
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Body Section - Form fields container */
 .modal-body {
   margin-top: 20px;
   display: grid;
   gap: 16px;
 }
 
+/* Form Field - Label and input pair */
 .field label {
   font-weight: 600;
   font-size: 14px;
@@ -42,6 +51,7 @@
   border: 1px solid #ddd;
 }
 
+/* Footer Section - Action buttons alignment */
 .modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -49,6 +59,7 @@
   margin-top: 24px;
 }
 
+/* Cancel Button - Secondary action style */
 .btn-cancel {
   border: 1px solid #7a12ff;
   background: transparent;
@@ -56,9 +67,11 @@
   border-radius: 22px;
 }
 
+/* Save Button - Primary action style */
 .btn-save {
   background: #7a12ff;
   color: white;
   padding: 10px 26px;
   border-radius: 22px;
 }
+

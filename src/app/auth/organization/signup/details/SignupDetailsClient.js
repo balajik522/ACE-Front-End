@@ -34,22 +34,27 @@ import {
 
 import { useLoading } from "../../../../../context/LoadingContext"; 
 
+// Organization details client component
 export default function Page() {
   const router = useRouter();
   const params = useSearchParams();
   const { setLoading } = useLoading(); 
 
+  // Get category from URL
   const category = params.get("cat");
 
+  // Form state management
   const [country, setCountry] = useState("");
   const [stateName, setStateName] = useState("");
   const [city, setCity] = useState("");
   const [orgName, setOrgName] = useState("");
 
+  // Location dropdown options
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
 
+  // Loading states for dropdowns
   const [loadingCountry, setLoadingCountry] = useState(false);
   const [loadingState, setLoadingState] = useState(false);
   const [loadingCity, setLoadingCity] = useState(false);
@@ -121,6 +126,7 @@ export default function Page() {
   function onContinue(e) {
     e.preventDefault();
 
+    // Validate required fields
     if (!country || !stateName || !city || !orgName) {
       return toast.error(MSG_ERR_FILL_ALL_FIELDS);
     }
@@ -128,6 +134,7 @@ export default function Page() {
     try {
       setLoading(true); 
 
+      // Navigate to account creation with collected data
       router.push(
         `/auth/organization/signup/account?cat=${category}&country=${country}&state=${stateName}&city=${city}&orgName=${orgName}`
       );
@@ -246,7 +253,7 @@ export default function Page() {
               </select>
             </div>
 
-            {/* ORG NAME */}
+            {/* ORGANIZATION NAME */}
             <div className="form-group">
               <label className="form-label">{LABEL_ORG_NAME}</label>
               <input

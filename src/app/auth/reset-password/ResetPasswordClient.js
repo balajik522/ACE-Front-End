@@ -26,6 +26,7 @@ import {
 } from "../../../const-value/config-message/page";
 import { useLoading } from "../../../context/LoadingContext";
 
+// Reset password client component
 export default function ResetPasswordPage() {
   const params = useSearchParams();
   const role = params.get("role") || ROLE_USER;
@@ -33,8 +34,10 @@ export default function ResetPasswordPage() {
   const { setLoading } = useLoading(); 
   const email = getEmail();
 
+  // Form state management
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  // Password visibility toggles
   const [show1, setShow1] = useState(false);
   const [show2, setShow2] = useState(false);
 
@@ -54,6 +57,7 @@ export default function ResetPasswordPage() {
 
   const ui = config[role];
 
+  // Handle form submission
   async function onSubmit(e) {
     e.preventDefault();
 
@@ -71,6 +75,7 @@ export default function ResetPasswordPage() {
     try {
       setLoading(true); 
 
+      // Update password via API
       await resetPasswordApi({
         email,
         password,

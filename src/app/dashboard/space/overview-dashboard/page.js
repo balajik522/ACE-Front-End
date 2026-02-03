@@ -25,6 +25,7 @@ export default function OverviewDashboardPage() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   /* ================= INIT AUTH ================= */
+  // Check user login status and retrieve session data
   useEffect(() => {
     const ok = isUserLoggedIn();
     setLoggedIn(ok);
@@ -35,6 +36,7 @@ export default function OverviewDashboardPage() {
   }, []);
 
   /* ================= LOAD EVENTS ================= */
+  // Load organization profile and approved events
   useEffect(() => {
     async function loadEvents() {
       try {
@@ -82,6 +84,6 @@ export default function OverviewDashboardPage() {
 
   if (!events.length) return null;
 
-  /* ================= UI (UNCHANGED) ================= */
+  /* ================= UI RENDER ================= */
   return <OverviewDashboardChart events={events} />;
 }

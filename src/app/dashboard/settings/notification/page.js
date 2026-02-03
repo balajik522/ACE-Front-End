@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import styles from "./Notification.module.css";
 import { MdEmail } from "react-icons/md";
 import { IoNotificationsOutline } from "react-icons/io5";
+
+// Notification settings page component
 export default function NotificationPage() {
+  // Notification preference state
   const [emailNotify, setEmailNotify] = useState(true);
   const [whatsappNotify, setWhatsappNotify] = useState(false);
 
@@ -59,3 +62,4 @@ export default function NotificationPage() {
     </div>
   );
 }
+

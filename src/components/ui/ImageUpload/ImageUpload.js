@@ -1,14 +1,26 @@
+/**
+ * ImageUpload Component
+ * Handles image file selection with validation and compression
+ */
+
 "use client";
 
 import toast from "react-hot-toast";
 import { processImage } from "../../../lib/utils/imageProcessor";
 
+/**
+ * ImageUpload Component
+ */
 export default function ImageUpload({
   images = [],
   setImages,
   multiple = false,
   label = "Upload Image",
 }) {
+  /**
+   * Handles file selection and processing
+   * Validates file type and compresses images
+   */
   const handleChange = async (e) => {
     const files = Array.from(e.target.files);
     let updated = [...images];
@@ -26,6 +38,7 @@ export default function ImageUpload({
       updated.push(processed);
     }
 
+    // Update images (single or multiple based on prop)
     setImages(multiple ? updated : [updated[0]]);
   };
 
@@ -41,3 +54,4 @@ export default function ImageUpload({
     </div>
   );
 }
+

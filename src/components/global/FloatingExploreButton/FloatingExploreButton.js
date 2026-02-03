@@ -3,9 +3,15 @@
 import { useEffect, useState } from "react";
 import "./FloatingExploreButton.css";
 
+/**
+ * FloatingExploreButton - Scroll to top/explore section button
+ * Appears when user scrolls past a certain point
+ */
 export default function FloatingExploreButton({ targetRef }) {
+  // Track scroll visibility
   const [visible, setVisible] = useState(false);
 
+  // Show button after scrolling 250px
   useEffect(() => {
     const onScroll = () => {
       setVisible(window.scrollY > 250);
@@ -15,6 +21,7 @@ export default function FloatingExploreButton({ targetRef }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Smooth scroll to target section
   const handleScroll = () => {
     if (!targetRef?.current) return;
 
@@ -24,10 +31,12 @@ export default function FloatingExploreButton({ targetRef }) {
     });
   };
 
+  // Hide when not visible
   if (!visible) return null;
 
   return (
     <button className="floating-explore-btn" onClick={handleScroll}>
+      {/* Up arrow icon */}
       <svg
         width="20"
         height="30"

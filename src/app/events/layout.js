@@ -1,10 +1,17 @@
 export const metadata = {
+  /* Page Title */
   title: "All Events | ACE",
+  
+  /* Search Engine Description */
   description:
     "description: Explore all college events with filters like category, mode, perks, certifications and more.",
+    
+  /* Canonical URL for SEO */
   alternates: {
     canonical: "/events",
   },
+  
+  /* Open Graph / Social Media Preview */
   openGraph: {
     title: "All College Events",
     description:
@@ -21,6 +28,8 @@ export const metadata = {
     ],
     type: "website",
   },
+  
+  /* Twitter Card Preview */
   twitter: {
     card: "summary_large_image",
     title: "Twitter – Events Listing",
@@ -30,6 +39,10 @@ export const metadata = {
   },
 };
 
+/* Events Layout Component
+ * Simple wrapper for events pages
+ * Provides consistent layout structure
+ */
 export default function EventsLayout({ children }) {
-  return <>{children}</>; // MUST wrap in JSX
+  return <>{children}</>; 
 }

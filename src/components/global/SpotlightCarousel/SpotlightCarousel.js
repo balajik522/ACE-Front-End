@@ -1,7 +1,14 @@
+/**
+ * SpotlightCarousel Component
+ * Displays featured events in an auto-rotating carousel with countdown timers
+ */
+
 "use client";
 
 import { useEffect, useState } from "react";
 import styles from "./SpotlightCarousel.module.css";
+
+// Icon imports for event details
 import {
   DATEICON,
   LOCATION_ICON,
@@ -9,6 +16,8 @@ import {
   SPOTLIGHT_DATE_ICON,
   SPOTLIGHT_LOCATION_ICON,
 } from "../../../const-value/config-icons/page";
+
+// Utility functions
 import { encodeId } from "../../../lib/utils/secureId";
 import { useRouter } from "next/navigation";
 import { useLoading } from "../../../context/LoadingContext";
@@ -25,6 +34,7 @@ function getCountdown(targetIso) {
     return { days: 0, hours: 0, mins: 0, secs: 0 };
   }
 
+  // Calculate difference in milliseconds
   const diff = Math.max(new Date(targetIso) - new Date(), 0);
 
   return {
@@ -43,6 +53,9 @@ export default function SpotlightCarousel({ data = [] }) {
   const total = data.length;
   const router = useRouter();
 
+  /**
+   * Handles navigation to event detail page
+   */
   const handleClick = (slug) => {
     if (!slug) return;
 
@@ -51,7 +64,7 @@ export default function SpotlightCarousel({ data = [] }) {
       router.push(`/events/${slug}`);
     } catch (error) {
       console.error("Navigation failed", error);
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -70,14 +83,19 @@ export default function SpotlightCarousel({ data = [] }) {
     return () => clearInterval(timer);
   }, []);
 
+  // Early return for empty data
   if (!Array.isArray(data) || data.length === 0) return null;
 
+  /**
+   * Navigate to specific slide index
+   */
   const goto = (i) => setCurrent((i + total) % total);
 
   return (
     <section className={styles.root}>
       <h2 className={styles.title}>Top Spotlights</h2>
 
+      {/* Carousel Track */}
       <div className={styles.wrapper}>
         <div
           className={styles.track}
@@ -109,11 +127,13 @@ export default function SpotlightCarousel({ data = [] }) {
 
                 {/* RIGHT */}
                 <div className={styles.right}>
+                  {/* Header with title and share button */}
                   <div className={styles.header}>
                     <h3>{event.title}</h3>
                     <button className={styles.share}>{SHAREICON}</button>
                   </div>
 
+                  {/* Event metadata */}
                   <div className={styles.meta}>
                     <p className={styles.location}>
                       {SPOTLIGHT_LOCATION_ICON}{" "}
@@ -132,33 +152,39 @@ export default function SpotlightCarousel({ data = [] }) {
                     </p>
                   </div>
 
+                  {/* Countdown section */}
                   <div className={styles.startsIn}>Event Starts In</div>
 
                   <div className={styles.countdown}>
+                    {/* Days */}
                     <span className={`${styles["cd-days"]}`}>
                       {String(days).padStart(2, "0")}
                       <br />
                       Days
                     </span>
 
+                    {/* Hours */}
                     <span className={`${styles["cd-hours"]}`}>
                       {String(hours).padStart(2, "0")}
                       <br />
                       Hours
                     </span>
 
+                    {/* Minutes */}
                     <span className={`${styles["cd-mins"]}`}>
                       {String(mins).padStart(2, "0")}
                       <br />
                       Mins
                     </span>
 
+                    {/* Seconds */}
                     <span className={`${styles["cd-secs"]}`}>
                       {String(secs).padStart(2, "0")}
                       <br />
                       Secs
                     </span>
 
+                    {/* Registration CTA */}
                     <a
                       href={event.paymentLink}
                       target="_blank"
@@ -180,6 +206,7 @@ export default function SpotlightCarousel({ data = [] }) {
       <div className={styles.controls}>
         <button onClick={() => goto(current - 1)}>❮</button>
 
+        {/* Dot indicators */}
         <div className={styles.dots}>
           {data.map((_, i) => (
             <span
@@ -195,3 +222,4 @@ export default function SpotlightCarousel({ data = [] }) {
     </section>
   );
 }
+

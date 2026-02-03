@@ -14,10 +14,12 @@ import { getUserProfileApi } from "../../../../lib/api/user.api";
 // AUTH
 import { getAuthFromSession, isUserLoggedIn } from "../../../../lib/auth";
 
+// Profile header component
 export default function ProfileHeader() {
   const router = useRouter();
   const { setLoading } = useLoading();
 
+  // Profile state
   const [profile, setProfile] = useState(null);
 
   /* ================= LOAD PROFILE ================= */
@@ -134,3 +136,4 @@ export default function ProfileHeader() {
     </div>
   );
 }
+

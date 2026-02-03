@@ -1,3 +1,4 @@
+/* ===== BANNER MODAL OVERLAY ===== */
 .banner-modal-overlay {
   position: fixed;
   inset: 0;
@@ -23,11 +24,13 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .modal-header h3 {
   font-size: 20px;
   font-weight: 600;
   font-family: "BL Melody", sans-serif;
 }
+
 .close-btn {
   background: none;
   border: none;
@@ -51,12 +54,15 @@
   margin: 0;
   font-size: 14px;
 }
+
 .upload-box b {
   font-weight: 600;
 }
+
 .upload-box span {
   color: red;
 }
+
 .upload-box small {
   display: block;
   margin-top: 6px;
@@ -127,3 +133,4 @@
   font-weight: 600;
   cursor: pointer;
 }
+

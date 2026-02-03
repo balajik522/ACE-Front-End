@@ -3,13 +3,19 @@
 import { SEARCH_ICON } from "../../../const-value/config-icons/page";
 import styles from "./LeaderboardHero.module.css";
 
+/**
+ * LeaderboardHero - Hero section for the leaderboard page
+ * Displays search functionality and top organizers showcase
+ */
 export default function LeaderboardHero({ search, onSearchChange }) {
   return (
     <section className={styles.hero}>
+      {/* Top tagline */}
       <p className={styles.topLine}>
         Follow Your Favourites For The Latest Buzz!
       </p>
 
+      {/* Main heading with avatars */}
       <h1 className={styles.heading}>
         <span className={styles.discover}>Discover</span>
 
@@ -22,6 +28,7 @@ export default function LeaderboardHero({ search, onSearchChange }) {
         <span className={styles.amazing}>Amazing</span>
       </h1>
 
+      {/* Subheading with sparkle */}
       <h2 className={styles.subHeading}>
         Event Organizers
         <div className={styles.subImg}>
@@ -40,6 +47,7 @@ export default function LeaderboardHero({ search, onSearchChange }) {
         />
       </div>
 
+      {/* Board title */}
       <h3 className={styles.boardTitle}>
         <span className={styles.boardimg}>
           <img src="/images/sparkles_s.png" alt="no" />
@@ -47,6 +55,7 @@ export default function LeaderboardHero({ search, onSearchChange }) {
         Star Organizers Board{" "}
       </h3>
 
+      {/* Board subtitle */}
       <p className={styles.boardSub}>
         Where brilliant organizers rise — your dedication builds the stage for
         every success!

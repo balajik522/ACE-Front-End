@@ -1,13 +1,19 @@
 "use client";
 
+// React hooks for state management and navigation
 import { useLoading } from "../../../context/LoadingContext";
 import styles from "./ChooseEventCategory.module.css";
 import { useRouter } from "next/navigation";
 
+/**
+ * ChooseEventCategory Component
+ * Displays category cards for event selection with navigation
+ */
 export default function ChooseEventCategory({ categories = [] }) {
   const router = useRouter();
   const { setLoading } = useLoading();
 
+  // Handles card click and navigation based on category type
   const handleCardClick = (category) => {
     try {
       setLoading(true);
@@ -28,15 +34,16 @@ export default function ChooseEventCategory({ categories = [] }) {
     <section className={styles.categoriesroot}>
       <h2 className={styles.title}>Choose Your Category</h2>
 
+      {/* Grid layout for category cards */}
       <div className={styles.grid}>
         {categories.map((c, i) => (
           <div
-            key={c.identity || `category-${i}`}  
+            key={c.identity || `category-${i}`}
             className={`${styles.card} ${
               c.class === "explore" ? styles.explore : ""
             }`}
             style={{ "--card-color": c.color || "#e3d8ff" }}
-            onClick={() => handleCardClick(c)}  
+            onClick={() => handleCardClick(c)}
           >
             <div className={styles.left}>
               <img src={c.img || c.imageUrl} alt={c.name} />
@@ -48,3 +55,4 @@ export default function ChooseEventCategory({ categories = [] }) {
     </section>
   );
 }
+

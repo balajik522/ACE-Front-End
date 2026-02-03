@@ -45,6 +45,7 @@
   font-size: 14px;
 }
 
+/* Focus state with purple accent */
 .delete-input:focus {
   outline: none;
   border-color: #7a12ff;
@@ -79,3 +80,4 @@
   cursor: pointer;
   font-family: "BL Melody", sans-serif;
 }
+

@@ -1,3 +1,8 @@
+/* =========================
+   FLOATING BUTTON
+========================= */
+
+/* Main button styling */
 .floating-explore-btn {
   position: fixed;
   bottom: 28px;
@@ -12,6 +17,7 @@
   cursor: pointer;
 }
 
+/* Animation - fade in and slide up */
 @keyframes floatIn {
   from {
     opacity: 0;
@@ -23,6 +29,9 @@
   }
 }
 
+/* =========================
+   RESPONSIVE - Mobile
+========================= */
 @media (max-width: 600px) {
   .floating-explore-btn {
     bottom: 18px;

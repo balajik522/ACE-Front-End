@@ -1,7 +1,13 @@
 "use client";
+
+// React hooks for effects, refs, and state management
 import { useEffect, useRef, useState } from "react";
 import styles from "./JourneyNumbers.module.css";
 
+/**
+ * Counter Component
+ * Animated number counter that triggers when visible in viewport
+ */
 function Counter({ end, label, delay = 0 }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -54,6 +60,10 @@ function Counter({ end, label, delay = 0 }) {
   );
 }
 
+/**
+ * JourneyNumbers Component
+ * Displays animated statistics about platform achievements
+ */
 export default function JourneyNumbers() {
   return (
     <section className={styles.wrapper}>
@@ -61,6 +71,7 @@ export default function JourneyNumbers() {
         Our Journey in <span>Numbers</span>
       </h2>
 
+      {/* Statistics cards with animated counters */}
       <div className={styles.statsCard}>
         <Counter end={120} label="Event Organizers" />
         <Counter end={340} label="Events Conducted" delay={200} />
@@ -69,3 +80,4 @@ export default function JourneyNumbers() {
     </section>
   );
 }
+

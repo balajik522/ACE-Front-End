@@ -1,7 +1,15 @@
+/**
+ * ConfirmModal Component
+ * Confirmation dialog with title, description, and action buttons
+ */
+
 "use client";
 
 import styles from "./Modal.module.css";
 
+/**
+ * ConfirmModal Functional Component
+ */
 export default function ConfirmModal({
   open,
   title,
@@ -15,11 +23,13 @@ export default function ConfirmModal({
   return (
     <div className={styles.modalBackdrop}>
       <div className={styles.modal}>
+        {/* Optional Image */}
         {image && (
           <div style={{ textAlign: "center", marginTop: 12 }} className="text-center">
             <img src={image} alt="confirmation" style={{ width: 120 }} />
           </div>
         )}
+
         {/* Header */}
         <div className={styles.modalHeader}>
           <h3 className={styles.modalTitle}>{title}</h3>
@@ -49,3 +59,4 @@ export default function ConfirmModal({
     </div>
   );
 }
+

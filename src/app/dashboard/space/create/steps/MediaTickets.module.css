@@ -1,3 +1,4 @@
+/* Card container - groups media, tickets and perks sections */
 .card {
   background: #fafafa;
   border-radius: 14px;
@@ -6,14 +7,19 @@
   border: 1px solid #eee;
 }
 
+/* Section heading - bold title for card sections */
 .title {
   font-weight: 700;
   margin-bottom: 16px;
   font-family: "BL Melody", sans-serif;
 }
+
+/* Form field wrapper - vertical layout for label and input */
 .field {
   padding-top: 15px;
 }
+
+/* Field label styling - bold text with required indicator */
 .field label {
   font-size: 14px;
   font-weight: 500;
@@ -21,16 +27,19 @@
   color: #000;
 }
 
+/* Required field asterisk - red color for mandatory fields */
 .field span {
   color: red;
 }
 
+/* Two-column grid - side-by-side layout for related fields */
 .grid2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
+/* Text input - fixed height with border styling */
 .input {
   height: 44px;
   border-radius: 10px;
@@ -39,12 +48,14 @@
   width: 100%;
 }
 
+/* Image upload area - dashed border container for drag-drop */
 .uploadBox {
   border: 1px dashed #ccc;
   border-radius: 12px;
   padding: 20px;
 }
 
+/* Upload trigger area - flex layout for file selection */
 .fileUpload {
   display: flex;
   gap: 16px;
@@ -53,6 +64,7 @@
   font-family: var(--font-poppins), sans-serif;
 }
 
+/* Image preview row - horizontal flex for thumbnails */
 .previewRow {
   display: flex;
   gap: 10px;
@@ -60,21 +72,26 @@
   margin-top: 12px;
 }
 
+/* Individual preview image - styled container for thumbnail */
 .previewImg {
   background: #eee;
   padding: 10px;
   border-radius: 8px;
 }
+
+/* Preview image sizing - fixed width for consistency */
 .previewImg img {
   width: 150px;
 }
 
+/* Icon input wrapper - relative positioning for icon placement */
 .iconInput {
   position: relative;
   margin-top: 25px;
   margin-bottom: 25px;
 }
 
+/* Icon positioning - absolute centered within input container */
 .icon {
   position: absolute;
   left: 12px;
@@ -82,10 +99,12 @@
   transform: translateY(-50%);
 }
 
+/* Input with icon - left padding to prevent text overlap */
 .iconInput .input {
   padding-left: 44px;
 }
 
+/* Check row - bordered row for radio/checkbox options */
 .checkRow {
   display: flex;
   justify-content: space-around;
@@ -94,6 +113,7 @@
   border-radius: 10px;
 }
 
+/* Ticket header - flex row for title and add button */
 .ticketHeader {
   display: flex;
   justify-content: space-between;
@@ -101,6 +121,7 @@
   margin-top: 10px;
 }
 
+/* Add button - purple filled button for creating new items */
 .addBtn {
   background: #7f00ff;
   color: #fff;
@@ -109,29 +130,34 @@
   border-radius: 20px;
 }
 
+/* Empty state - placeholder text for no data */
 .empty {
   color: #7f00ff;
   margin-top: 10px;
   font-family: var(--font-poppins), sans-serif;
 }
 
+/* Table - full-width data display with collapsed borders */
 .table {
   width: 100%;
   margin-top: 14px;
   border-collapse: collapse;
 }
 
+/* Table cells - consistent padding and border styling */
 .table th,
 .table td {
   border: 1px solid #eee;
   padding: 10px;
 }
 
+/* Footer container - flex row for action buttons */
 .footer {
   display: flex;
   justify-content: space-between;
 }
 
+/* Primary button - filled purple action button */
 .primaryBtn {
   background: #7f00ff;
   color: #fff;
@@ -141,6 +167,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Outline button - bordered secondary action button */
 .outlineBtn {
   border: 2px solid #7f00ff;
   background: #fff;
@@ -149,6 +176,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Modal backdrop - full-screen overlay with semi-transparent background */
 .modalBackdrop {
   position: fixed;
   inset: 0;
@@ -159,6 +187,7 @@
   font-family: "BL Melody", sans-serif;
 }
 
+/* Modal container - centered content card */
 .modal {
   background: #fff;
   padding: 24px;
@@ -166,21 +195,25 @@
   width: 600px;
 }
 
+/* Switch row - right-aligned toggle labels */
 .switchRow {
   text-align: right;
   margin-bottom: 20px;
 }
 
+/* Switch label - clickable toggle option */
 .switchRow span {
   margin-left: 20px;
   cursor: pointer;
 }
 
+/* Active toggle - highlighted state for selected option */
 .active {
   color: #7f00ff;
   font-weight: 700;
 }
 
+/* Success modal - centered confirmation dialog */
 .successModal {
   background: #fff;
   padding: 40px;
