@@ -10,19 +10,33 @@ export default function OrganizersCarousel({ data = [] }) {
 
   if (!Array.isArray(data) || data.length === 0) return null;
 
+  /* ================= ORGANIZER CLICK ================= */
   const handleOrgClick = (slug) => {
+    console.log(",,,,,,,,,,,,,",slug)
     if (!slug) return;
-    setLoading(true);
-    router.push(`/organization-details/${slug}`);
+
+    try {
+      setLoading(true);
+      router.push(`/organization-details/${slug}`);
+    } catch (error) {
+      console.error("Navigation failed", error);
+      setLoading(false);
+    }
   };
 
+  /* ================= LEADERBOARD CLICK ================= */
   const handleLeaderboardClick = () => {
-    setLoading(true);
-    router.push("/leaderboard");
+    try {
+      setLoading(true);
+      router.push("/leaderboard");
+    } catch (error) {
+      console.error("Leaderboard navigation failed", error);
+      setLoading(false);
+    }
   };
 
   return (
-    <section className={styles.root}>
+    <section className={styles.topOrganizersroot}>
       {/* HEADER */}
       <div className={styles.header}>
         <div>
@@ -33,23 +47,25 @@ export default function OrganizersCarousel({ data = [] }) {
           </p>
         </div>
 
+        {/*ROUTE TO LEADERBOARD PAGE */}
         <button
-          className={styles.seeAllBtn}
+          className={styles.leaderboardBtn}
           onClick={handleLeaderboardClick}
         >
-          See all
+          View Leaderboard &gt;&gt;&gt;
         </button>
       </div>
 
-      {/* CARD GRID */}
-      <div className={styles.list}>
-        {data.slice(0, 5).map((org, index) => (
-          <div
-            key={org.identity || index}
-            className={styles.card}
-            onClick={() => handleOrgClick(org.slug)}
-          >
-            <div className={styles.cardContent}>
+      {/* ORGANIZER CARDS */}
+      <div className={styles.row}>
+        <div className={styles.list}>
+          {data.map((org, index) => (
+            <div
+              key={org.identity || index}
+              className={styles.card}
+              onClick={() => handleOrgClick(org.slug)}
+              style={{ cursor: "pointer" }}
+            >
               <div className={styles.avatarWrap}>
                 {org.profileImage ? (
                   <img
@@ -69,13 +85,11 @@ export default function OrganizersCarousel({ data = [] }) {
               </div>
 
               <div className={styles.events}>
-                {org._count?.events || 0} Events
+                {org._count?.events || 0} events
               </div>
             </div>
-
-            <button className={styles.followBtn}>Follow</button>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -107,24 +107,23 @@ export default function EventDetails({
     loadCities();
   }, [data.state, data.country]);
 
- const addTag = () => {
-  if (!tagInput) return;
+  const addTag = () => {
+    let value = tagInput.trim();
+    if (!value) return;
 
-  const finalTag = `#${tagInput}`;
+    if (data.tags?.includes(value)) {
+      setTagInput("");
+      return;
+    }
 
-  // duplicate check
-  if ((data.tags || []).includes(finalTag)) {
+    setData({
+      ...data,
+      tags: [...(data.tags || []), value],
+    });
+
     setTagInput("");
-    return;
-  }
+  };
 
-  setData({
-    ...data,
-    tags: [...(data.tags || []), finalTag],
-  });
-
-  setTagInput("");
-};
   const removeTag = (tag) => {
     setData({
       ...data,
@@ -231,19 +230,9 @@ export default function EventDetails({
             <div className={styles.tagRow}>
               <input
                 className={styles.input}
-                placeholder="tags"
+                placeholder="#tags"
                 value={tagInput}
-                onChange={(e) => {
-                  let value = e.target.value;
-
-                  value = value.replace(/\s/g, "");
-
-                  value = value.replace(/#/g, "");
-
-                  value = value.replace(/[^a-zA-Z0-9_]/g, "");
-
-                  setTagInput(value);
-                }}
+                onChange={(e) => setTagInput(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     e.preventDefault();
@@ -251,7 +240,6 @@ export default function EventDetails({
                   }
                 }}
               />
-
               <button
                 type="button"
                 className={styles.btnSmall}
@@ -340,8 +328,9 @@ export default function EventDetails({
           {["online", "offline", "hybrid"].map((m) => (
             <button
               key={m}
-              className={`${styles.modeBtn} ${data.mode === m ? styles.active : ""
-                }`}
+              className={`${styles.modeBtn} ${
+                data.mode === m ? styles.active : ""
+              }`}
               onClick={() =>
                 setData({
                   ...data,
