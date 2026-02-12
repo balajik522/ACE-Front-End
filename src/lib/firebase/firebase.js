@@ -1,6 +1,9 @@
+// Firebase client initialization for browser-based services
+
 import { initializeApp } from "firebase/app";
 import { getMessaging } from "firebase/messaging";
 
+// Firebase configuration loaded from environment variables
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -10,7 +13,9 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+// Initialize Firebase app instance
 const app = initializeApp(firebaseConfig);
 
+// Initialize Firebase Cloud Messaging only on client side
 export const messaging =
   typeof window !== "undefined" ? getMessaging(app) : null;
