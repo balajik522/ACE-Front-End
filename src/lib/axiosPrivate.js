@@ -1,21 +1,27 @@
+// Axios instance for authenticated (private) API requests
+
 import axios from "axios";
 import { getAuthToken, clearAuthSession } from "./auth";
 
+// Configure Axios for private APIs with auth support
 const apiPrivate = axios.create({
+  // Use direct API URL on server, proxy on client
   baseURL:
     typeof window === "undefined"
       ? process.env.NEXT_PUBLIC_API_URL
       : "/api/proxy",
-  withCredentials: true, // cookie support (if backend uses it)
+  withCredentials: true, // Enable cookies if backend requires them
 });
 
 /* ================= REQUEST INTERCEPTOR ================= */
+
+// Attach JWT token to every outgoing request
 apiPrivate.interceptors.request.use(
   (config) => {
-    // 🔑 GET JWT TOKEN FROM SESSION
+    // Get auth token from session
     const token = getAuthToken();
 
-    // 🔥 ATTACH BEARER TOKEN
+    // Add Authorization header if token exists
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -26,13 +32,15 @@ apiPrivate.interceptors.request.use(
 );
 
 /* ================= RESPONSE INTERCEPTOR ================= */
+
+// Handle auth errors globally
 apiPrivate.interceptors.response.use(
   (response) => response,
   async (error) => {
     const status = error?.response?.status;
 
+    // On unauthorized, clear session and redirect
     if (status === 401 && typeof window !== "undefined") {
-      // clear session + redirect
       await clearAuthSession();
       window.location.href = "/unauthorized";
     }

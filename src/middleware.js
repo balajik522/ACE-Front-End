@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 
 /* ===============================
-   ROUTES
+   ROUTE DEFINITIONS
 ================================ */
 
+// Public routes that must match exactly
 const PUBLIC_EXACT = ["/", "/unauthorized"];
 
+// Public routes allowed by prefix (no auth required)
 const PUBLIC_PREFIX = [
   "/about",
   "/contact",
@@ -15,20 +17,22 @@ const PUBLIC_PREFIX = [
   "/explore-events",
   "/explore-categories",
   "/organization-details",
-  "/auth",              
+  "/auth",
 ];
 
+// Routes that require authentication
 const PROTECTED_PREFIX = ["/dashboard"];
 
 /* ===============================
    MIDDLEWARE
 ================================ */
 
+// Next.js middleware for route-level auth protection
 export function middleware(request) {
   const { pathname } = request.nextUrl;
 
   /* --------------------------------
-     Ignore static & API
+     Skip static assets & API proxy
   --------------------------------- */
   if (
     pathname.startsWith("/_next") ||
@@ -40,32 +44,33 @@ export function middleware(request) {
   }
 
   /* --------------------------------
-     Allow unauthorized page
+     Allow unauthorized page always
   --------------------------------- */
   if (pathname === "/unauthorized") {
     return NextResponse.next();
   }
 
   /* --------------------------------
-     Public exact routes
+     Allow exact public routes
   --------------------------------- */
   if (PUBLIC_EXACT.includes(pathname)) {
     return NextResponse.next();
   }
 
   /* --------------------------------
-     Public prefix routes (IMPORTANT)
+     Allow public prefix routes
   --------------------------------- */
   if (PUBLIC_PREFIX.some((route) => pathname.startsWith(route))) {
     return NextResponse.next();
   }
 
   /* --------------------------------
-     Protected routes
+     Protect restricted routes
   --------------------------------- */
   if (PROTECTED_PREFIX.some((route) => pathname.startsWith(route))) {
     const token = request.cookies.get("auth_token")?.value;
 
+    // Redirect to unauthorized if not logged in
     if (!token) {
       return NextResponse.redirect(
         new URL("/unauthorized", request.url),
@@ -77,9 +82,10 @@ export function middleware(request) {
 }
 
 /* ===============================
-   MATCHER
+   MIDDLEWARE MATCHER
 ================================ */
 
+// Apply middleware to all routes except API proxy
 export const config = {
   matcher: ["/((?!api/proxy).*)"],
 };
