@@ -9,3 +9,5 @@ export const STORAGE_ROLE = "role";
 // COOKIE KEYS
 export const COOKIE_TOKEN = "token";
 export const COOKIE_ROLE = "role";
+
+console.log("test")
