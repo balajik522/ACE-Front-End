@@ -1,3 +1,4 @@
+// Map location marker icon - 18x18px, dark grey color
 export const LOCATION_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +15,7 @@ export const LOCATION_ICON = (
     />
   </svg>
 );
+// Home page location marker icon - 32x32px, lighter grey color
 export const HOME_PAGE_LOCATION_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -30,6 +32,7 @@ export const HOME_PAGE_LOCATION_ICON = (
     />
   </svg>
 );
+// Home page calendar/date icon - 32x32px, grey color
 export const HOME_PAGE_DATE_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -71,6 +74,7 @@ export const HOME_PAGE_DATE_ICON = (
   </svg>
 );
 
+// What/info icon - 28x28px, displays question marks and information
 export const WHATICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +109,7 @@ export const WHATICON = (
     />
   </svg>
 );
+// Save/bookmark icon - accepts active prop to toggle between filled and outline states
 export const SAVEICON = ({ active = false }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -124,12 +129,14 @@ export const SAVEICON = ({ active = false }) => (
   </svg>
 );
 
+// Colored bookmark saved icon - 44x44px, purple filled bookmark
 export const COLOR_SAVED_ICON = (<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
   <rect width="0" height="0" rx="22" fill="#F3F3F3"/>
   <path d="M27.276 12.5H16.7205C15.5594 12.5 14.6199 13.45 14.6199 14.6111L14.6094 31.5L21.9983 28.3333L29.3872 31.5V14.6111C29.3872 13.45 28.4372 12.5 27.276 12.5ZM27.276 28.3333L21.9983 26.0322L16.7205 28.3333V15.6667C16.7205 15.0861 17.1955 14.6111 17.776 14.6111H26.2205C26.801 14.6111 27.276 15.0861 27.276 15.6667V28.3333Z" fill="#7F00FF"/>
   <path d="M28 13.6992V29.2992L22 26.8992L16 29.2992V13.6992H28Z" fill="#7F00FF"/>
 </svg>
 );
+// Right arrow navigation icon - 42x42px, dark circle with white arrow
 export const RIGHTSIDEARROW_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -184,6 +191,7 @@ export const RIGHTSIDEARROW_ICON = (
     </defs>
   </svg>
 );
+// Left arrow navigation icon - 42x42px, dark circle with white arrow
 export const LEFTSIDEARROW_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -245,6 +253,7 @@ export const LEFTSIDEARROW_ICON = (
   </svg>
 );
 
+// Like/heart icon - accepts active prop to toggle between red and grey states
 export const LIKE_ICON = ({ active = false }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -261,6 +270,7 @@ export const LIKE_ICON = ({ active = false }) => (
   </svg>
 );
 
+// Organization edit pencil icon - 18x18px, light white color
 export const ORG_EDITE_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -275,6 +285,7 @@ export const ORG_EDITE_ICON = (
     />
   </svg>
 );
+// Spotlight location marker icon - 15x21px, purple color
 export const SPOTLIGHT_LOCATION_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -297,6 +308,7 @@ export const SPOTLIGHT_LOCATION_ICON = (
     />
   </svg>
 );
+// Spotlight calendar date icon - 18x18px, orange color
 export const SPOTLIGHT_DATE_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -313,6 +325,7 @@ export const SPOTLIGHT_DATE_ICON = (
     />
   </svg>
 );
+// Single event share icon - 18x18px, dark grey color
 export const SINGELEVENTSHARE_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -327,6 +340,7 @@ export const SINGELEVENTSHARE_ICON = (
     />
   </svg>
 );
+// Explore/expand arrow icon - 15x9px, dark colour, downward pointing
 export const EXPLORE_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -343,6 +357,7 @@ export const EXPLORE_ICON = (
     />
   </svg>
 );
+// Map location view icon - 18x18px, grey location marker with details
 export const MAPLOCATIONVIEWICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -357,6 +372,7 @@ export const MAPLOCATIONVIEWICON = (
     />
   </svg>
 );
+// Page move/navigation icon - 24x24px, purple right arrow
 export const PAGEMOVEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -386,6 +402,7 @@ export const PAGEMOVEICON = (
   </svg>
 );
 
+// Date/calendar icon - 18x18px, dark grey calendar with date cells
 export const DATEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -426,6 +443,7 @@ export const DATEICON = (
     />
   </svg>
 );
+// Time/clock icon - 16x16px, grey clock face with hands
 export const TIMEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -445,6 +463,7 @@ export const TIMEICON = (
   </svg>
 );
 
+// Share action icon - 78x78px, large share button with light purple background
 export const SHAREICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -506,6 +525,7 @@ export const SHAREICON = (
   </svg>
 );
 
+// Phone call icon - 20x29px, light white phone handset
 export const PHONEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -520,6 +540,7 @@ export const PHONEICON = (
     />
   </svg>
 );
+// Ticket/event ticket icon - 20x20px, dark grey ticket with dashed line
 export const TICKET_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -538,6 +559,7 @@ export const TICKET_ICON = (
     />
   </svg>
 );
+// Mode/status indicator icon - 8x8px, small green dot circle
 export const MODE_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -549,6 +571,7 @@ export const MODE_ICON = (
     <circle cx="4" cy="4" r="4" fill="#1DA339" />
   </svg>
 );
+// View/visibility icon - 20x15px, eye with dark grey color
 export const VIEW_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -570,6 +593,7 @@ export const VIEW_ICON = (
   </svg>
 );
 
+// Email envelope icon - 24x24px, light white envelope
 export const EMAILICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -589,6 +613,7 @@ export const EMAILICON = (
   </svg>
 );
 
+// Email notification text icon - 29x29px, white notification bell
 export const EMAILTEXT = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -612,6 +637,7 @@ export const EMAILTEXT = (
   </svg>
 );
 
+// WhatsApp messaging icon - 25x24px, bright green WhatsApp logo
 export const WHATSAPP = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -627,6 +653,7 @@ export const WHATSAPP = (
   </svg>
 );
 
+// Delete/trash can icon - 20x24px, red trash bin
 export const DELETICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -642,6 +669,7 @@ export const DELETICON = (
   </svg>
 );
 
+// Add/plus icon - 24x24px, green plus sign in circle
 export const ADDICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -664,6 +692,7 @@ export const ADDICON = (
   </svg>
 );
 
+// WhatsApp icon variant - 24x31px, bright green WhatsApp symbol
 export const WHATSAPPICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -681,6 +710,7 @@ export const WHATSAPPICON = (
   </svg>
 );
 
+// Instagram social media icon - 20x20px, gradient coloured logo
 export const INSTAGRAMICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -729,6 +759,7 @@ export const INSTAGRAMICON = (
   </svg>
 );
 
+// Facebook social media icon - 29x29px, blue gradient logo
 export const FACEBOOKICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -771,6 +802,7 @@ export const FACEBOOKICON = (
     </defs>
   </svg>
 );
+// Footer Facebook icon - 39x39px, light white Facebook logo
 export const FOOTER_FACEBOOK = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -785,6 +817,7 @@ export const FOOTER_FACEBOOK = (
     />
   </svg>
 );
+// Footer Instagram icon - 39x39px, light white Instagram logo
 export const FOOTER_INSTA = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -799,6 +832,7 @@ export const FOOTER_INSTA = (
     />
   </svg>
 );
+// Footer X (Twitter) icon - 39x39px, light white X logo
 export const FOOTER_X = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -813,6 +847,7 @@ export const FOOTER_X = (
     />
   </svg>
 );
+// Footer LinkedIn icon - 39x39px, light white LinkedIn logo
 export const FOOTER_LINKEDIN = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -827,6 +862,7 @@ export const FOOTER_LINKEDIN = (
     />
   </svg>
 );
+// WhatsApp chat starter icon - 18x18px, light white WhatsApp symbol
 export const START_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -841,6 +877,7 @@ export const START_ICON = (
     />
   </svg>
 );
+// Footer WhatsApp icon - 22x21px, yellow star badge
 export const FOOTER_WHATSAPP = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -856,6 +893,7 @@ export const FOOTER_WHATSAPP = (
   </svg>
 );
 
+// X (Twitter) platform icon - 20x20px, black X logo
 export const XICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -878,6 +916,7 @@ export const XICON = (
   </svg>
 );
 
+// YouTube video platform icon - 28x28px, red YouTube play button
 export const YOUTUBEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -908,6 +947,7 @@ export const YOUTUBEICON = (
   </svg>
 );
 
+// Telegram messaging app icon - 28x28px, blue Telegram logo
 export const TELEGRAMICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -946,6 +986,7 @@ export const TELEGRAMICON = (
   </svg>
 );
 
+// LinkedIn professional network icon - 20x20px, blue LinkedIn logo
 export const LINKEDINICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -960,6 +1001,7 @@ export const LINKEDINICON = (
     />
   </svg>
 );
+// Colored ticket icon - 24x16px, purple ticket with details
 export const TICKET_COLOR_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -977,6 +1019,7 @@ export const TICKET_COLOR_ICON = (
   </svg>
 );
 
+// Video play media icon - 21x21px, dark grey video player symbol
 export const VIDEOICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1004,6 +1047,7 @@ export const VIDEOICON = (
   </svg>
 );
 
+// Website/web link icon - 20x20px, dark grey globe symbol
 export const WEBSITEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1019,6 +1063,7 @@ export const WEBSITEICON = (
   </svg>
 );
 
+// Edit/pencil edit icon - 24x24px, dark grey pencil
 export const EDITICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1047,6 +1092,7 @@ export const EDITICON = (
   </svg>
 );
 
+// Link/chain icon - 28x16px, grey chain link symbol
 export const LINKICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1061,6 +1107,7 @@ export const LINKICON = (
     />
   </svg>
 );
+// Search magnifying glass icon - 22x22px, dark search symbol
 export const SEARCH_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1080,6 +1127,7 @@ export const SEARCH_ICON = (
   </svg>
 );
 
+// Image/photo icon - 22x22px, grey image picture symbol
 export const IMAGEICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1111,6 +1159,7 @@ export const IMAGEICON = (
   </svg>
 );
 
+// Lock/security icon - 24x24px, purple padlock symbol
 export const LOCKICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
